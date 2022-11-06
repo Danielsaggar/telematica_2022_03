@@ -26,6 +26,10 @@ html {
     background-color: black;
     color: rgb(77, 175, 175);
 }
+.avatar{
+    width: 105px;
+    height: 105px;
+}
 
 .login{
     display: flex;

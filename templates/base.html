@@ -11,6 +11,15 @@
         Ing.Yesid-Ing.Alejandra-Ing.Marlon| sistema de gestión para el mundial CATAR 2022
     </div>
     <div class="cont">
+        {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <ul class=flashes>
+                    {% for message in messages %}
+                    <li>{{ message }}</li>
+                    {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endwith %}
         {% block content %} {% endblock %}
     </div>    
 </body>
