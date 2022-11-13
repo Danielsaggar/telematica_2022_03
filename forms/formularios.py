@@ -8,6 +8,7 @@ class Login(FlaskForm):
     password = PasswordField("Contraseña", validators=[
         DataRequired(message="Password es obligatorio")])
     entrar = SubmitField("Entrar")
+    invitado = SubmitField("Invitado")
 
 class Ingresos(FlaskForm):
     id_producto = StringField("id producto")
