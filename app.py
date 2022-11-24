@@ -19,6 +19,7 @@ from models.entities.User import Users
 
 
 app = Flask(__name__)
+Login_Manager_app=LoginManager(app)
 db=MySQL(app)
 
 @app.route("/", methods=["GET", "POST"])
@@ -55,12 +56,7 @@ def log():
             logged=ModelUser.login(db, user)
         if logged!=None:  
             if logged.password:   
-                if logged.type==3:       
-                    return render_template("/admin/Menu.html", frm=frm)
-                elif logged.type==2:
-                    return render_template("/commentator/Menu.html", frm=frm)
-                elif logged.type==1:
-                    return render_template("/guest/Menu.html", frm=frm)
+                return redirect ("/Menu", menu(logged))
             else:
                 flash("Weon ta mal")
             return render_template("Login.html", frm=frm)
@@ -70,6 +66,16 @@ def log():
     else:
         return render_template("Login.html", frm=frm)
 
+@app.route("/Menu", methods=["GET", "POST"])
+def menu(logged):   
+    if logged.type==3:       
+        return render_template("/admin/Menu.html", frm=frm)
+    elif logged.type==2:
+        return render_template("/commentator/Menu.html", frm=frm)
+    elif logged.type==1:
+        return render_template("/guest/Menu.html", frm=frm) 
+    else:    
+        return redirect ("/Login")
 
 app.config.from_object(config['development'])
 app.run()
