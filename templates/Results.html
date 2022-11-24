@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block title %}
+Login
+{% endblock %}
+{% block content %}
+<main>
+    <section class="tablas">
+        <h2>Partidos Jugados</h2>
+        <script src="../Telematica/js/Partidos.js"></script>
+
+        <div class="tablas__container container">
+
+            <img src="/static/resources/leftarrow.svg" class="jugados__arrow" id="before">
+
+            <section class="tablas__body tablas__body--show" data-id="1">
+
+                <table class="container table">
+                    <thead>
+                        <td>Local</td>
+                        <td>Visitante</td>
+                    </thead>
+                    <tbody id="Partidos">
+                    </tbody>
+                </table>
+
+            </section>
+
+            <section class="tablas__body" data-id="2">
+                
+                <table class="container table">
+                    <thead>
+                        <td>Local</td>
+                        <td>Visitante</td>
+                    </thead>
+                    <tbody id="Partidos">
+                    </tbody>
+                </table>
+
+            </section>
+
+            <section class="tablas__body" data-id="3">    
+                <table class="container table">
+                    <thead>
+                        <td>Local</td>
+                        <td>Visitante</td>
+                    </thead>
+                    <tbody id="Partidos">
+                    </tbody>
+                </table>
+
+            </section>
+
+            <section class="tablas__body" data-id="4">    
+                <table class="container table">
+                    <thead>
+                        <td>Local</td>
+                        <td>Visitante</td>
+                    </thead>
+                    <tbody id="Partidos">
+                    </tbody>
+                </table>
+
+            </section>
+
+            <img src="/static/resources/rightarrow.svg" class="jugados__arrow" id="next">
+
+        </div>
+
+    </section>
+</main>
+
+<script src="/static/js/slider.js"></script>
+{% endblock %}

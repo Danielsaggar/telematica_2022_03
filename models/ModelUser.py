@@ -17,3 +17,14 @@ class ModelUser():
                 return None
         except Exception as ex:
             raise Exception(ex)
+
+    @classmethod      
+    def create(self,db,user):
+        try:
+            cursor=db.connection.cursor()                        
+            cursor.execute("INSERT INTO user (User, Password, Type, Cell) VALUES(%s,%s,%s,%s)",
+                (user.user, Users.encrypt(user.password),"1",user.id))
+            db.connection.commit()
+            print("Funciona")
+        except Exception as ex:
+            raise Exception(ex)

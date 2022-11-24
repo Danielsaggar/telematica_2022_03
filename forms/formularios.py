@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, DateField, IntegerField, SelectField
-from wtforms.validators import DataRequired
+from wtforms.validators import DataRequired, Length
 
 class Login(FlaskForm):
     username = StringField("Usuario", validators=[
@@ -9,6 +9,15 @@ class Login(FlaskForm):
         DataRequired(message="Password es obligatorio")])
     entrar = SubmitField("Entrar")
     invitado = SubmitField("Invitado")
+
+class Register(FlaskForm):
+    username = StringField("Usuario", validators=[
+        DataRequired(message="Usuario es obligartorio")])
+    password = PasswordField("Contraseña", validators=[
+        DataRequired(message="Password es obligatorio")])
+    cellphone = IntegerField("Celular", validators=[
+        DataRequired(message="Celular es obligartorio"),Length(min=10, max=10)])
+    crear = SubmitField("Crear")    
 
 class Ingresos(FlaskForm):
     id_producto = StringField("id producto")

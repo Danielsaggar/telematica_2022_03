@@ -8,8 +8,13 @@ class Users():
         self.password=password
         self.type=type
 
+    
     @classmethod
     def check(self, hashed_password, password):
         return check_password_hash(hashed_password,password)
+    
+    @classmethod
+    def encrypt(self, password):        
+        return generate_password_hash(password)
 
     

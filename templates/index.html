@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}
+Qatar 2022
+{% endblock %}
+
+{% block content %}
+<section class="container about">
+    <h2 class="subtitle">Tabla de posiciones</h2>
+    
+
+    <table class="container table">
+        <!-- Se genera una tabla (la cual se entregara a index.php) -->
+        <tr>
+            <!-- Info de las columnas -->
+            <td>Pos</td>
+            <td>Equipo</td>
+            <td>PJ</td>
+            <td>G</td>
+            <td>E</td>
+            <td>P</td>
+            <td>GF</td>
+            <td>GC</td>
+            <td>DG</td>
+            <td>Pts</td>
+        </tr>
+        {% for team in table %}
+        <tr>
+            <td>{{ team[0] }}</td>
+            <td>{{ team[1] }}</td>
+            <td>{{ team[2] }}</td>
+            <td>{{ team[3] }}</td>    
+            <td>{{ team[4] }}</td>
+            <td>{{ team[5] }}</td>
+            <td>{{ team[6] }}</td>
+            <td>{{ team[7] }}</td>  
+            <td>{{ team[8] }}</td>
+            <td>{{ team[9] }}</td>                  
+        </tr>
+        {% endfor %} 
+        <tbody id="testing">
+        </tbody>
+    </table>
+
+
+</section>
+{% endblock %}

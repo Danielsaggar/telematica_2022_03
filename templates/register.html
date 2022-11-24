@@ -8,13 +8,23 @@ Login
 
     <div class="login_box">
         <img class="avatar" src="/static/resources/logo.png" alt="logo">
-            <h1>Inicia sesión</h1>           
+            <h1>Registro</h1>           
                 <form action="" method="post">
                     {{ frm.hidden_tag() }}
                     <!--usuario-->
                     <p>
                         {{ frm.username.label }}
                         {{ frm.username }}
+                        {% for error in frm.username.errors %}
+                    <div>
+                        {{ error }}
+                    </div>
+                    {% endfor %}
+                    </p>
+                    <!--Celular-->
+                    <p>
+                        {{ frm.cellphone.label }}
+                        {{ frm.cellphone }}
                         {% for error in frm.username.errors %}
                     <div>
                         {{ error }}
@@ -34,14 +44,11 @@ Login
                     <!--boton-->
                     <p>       
                         <form action="" method="post">
-                            {{ frm.entrar }}       
-                        </form>       
-                        <form action="" method="post">
-                            {{ frm.invitado }}       
-                        </form>                                                          
+                            {{ frm.crear }}       
+                        </form>                                                                                        
                     </p>
                     <a href="#">¿Has olvidado tu contraseña?</a><br>
-                    <a href="{{ url_for('register') }}">¿No tienes una cuenta de usuario?</a>
+                    <a href="#">¿No tienes una cuenta de usuario?</a>
                 </form>
     </div>
 {% endblock %}
