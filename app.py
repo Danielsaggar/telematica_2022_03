@@ -20,7 +20,7 @@ from models.entities.User import Users
 
 
 app = Flask(__name__)
-Login_Manager_app=LoginManager(app)
+#Login_Manager_app=LoginManager(app)
 db=MySQL(app)
 global Type
 

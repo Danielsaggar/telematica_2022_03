@@ -1,16 +1,13 @@
-body{
-    background-image: url(/static/resources/white.png);
-    background-size: cover;
-}
+
 table{
     border-collapse: collapse;
     margin: 15px;
 }
 tr {
-    border: black 2px solid;
+    border: #bdbdbd 2px solid;
   }
 td{
-    border: black 2px solid;
+    border: #bdbdbd 2px solid;
   }
 
 body,
