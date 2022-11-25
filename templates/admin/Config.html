@@ -4,6 +4,17 @@
 Qatar 2022
 {% endblock %}
 
+{% block header %} 
+<ul class="nav">
+    <li><a href="#" class="nav__item">Ajustes</a>
+        <ul>
+        <li><a href="#"  class="ajustes">Programacion</a></li>
+        <li><a href="#" class="ajustes">Configuraciones</a></li>
+        </ul>
+    </li>
+</ul>
+{% endblock %}
+
 {% block content %}
 <main>
     <section class="Admin container"></section>
@@ -28,7 +39,7 @@ Qatar 2022
                             <td>Nombre</td>
                             <td>Procedencia</td>
                         </tr>
-                        {% for arbitro in data %}
+                        {% for arbitro in Arbitrator %}
                         <tr>
                             <td>{{ arbitro[0] }}</td>
                             <td>{{ arbitro[1] }}</td>
@@ -43,23 +54,25 @@ Qatar 2022
 
                     <div class="Admin__formulario">
                         <form action="" method="post">
-                            {{ frm.name.label }}
-                            {{ frm.name }}
+                            {{ frm_arbitro.name.label }}
+                            {{ frm_arbitro.name }}
 
-                            {{ frm.country.label }}
-                            {{ frm.country }}
+                            {{ frm_arbitro.country.label }}
+                            {{ frm_arbitro.country }}
                             
-                            {{ frm.crear.label }}
-                            {{ frm.crear }}                            
+                            {{ frm_arbitro.crear_arbitro.label }}
+                            {{ frm_arbitro.crear_arbitro }}                            
                         </form>
                     </div>
                     <p class="Admin__paragraph">Borrar arbitro de la nomima perro</p>
 
                     <div class="Admin__formulario">
-                        <form action="../Telematica/php/DArbitros.php" method="get">
-                            <p class="Admin__paragraph"> id_Arbitro: <input class="Admin__text" type="text" name="id_Arbitros"></p>
-                            <br><br>
-                            <input class="Admin__button" type="submit" value="Delete pitador">
+                        <form action="#" method="post">
+                            {{ frm_arbitro.Id.label }}
+                            {{ frm_arbitro.Id }}
+                            
+                            {{ frm_arbitro.delete_arbitro.label }}
+                            {{ frm_arbitro.delete_arbitro }} 
                         </form>
 
                     </div>
@@ -81,14 +94,57 @@ Qatar 2022
                 <div class="Admin__show">
                     <script src="../../static/js/Estadios.js"></script>
                     <table class="container table">
-                        <thead>
+                        <tr>
                             <!-- Info de las columnas -->
+                            <td>sede</td>
                             <td>Estadio</td>
                             <td>Capacidad</td>
                             <td>Ubicación</td>
-                        </thead>
+                        </tr>
+                        {% for estadio in Stadium %}
+                        <tr>
+                            <td>{{ estadio[0] }}</td>
+                            <td>{{ estadio[1] }}</td>
+                            <td>{{ estadio[2] }}</td>              
+                            <td>{{ estadio[3] }}</td>              
+                        </tr>
+                        {% endfor %} 
                         <tbody id="Estadios"></tbody>
                     </table>
+
+                    <p class="Admin__paragraph">Ingresar datos del nuevo estadio</p>
+
+                    <div class="Admin__formulario">
+                        <form action="" method="post">
+                            {{ frm_estadio.name.label }}
+                            {{ frm_estadio.name }}
+
+                            {{ frm_estadio.capacidad.label }}
+                            {{ frm_estadio.capacidad }}
+
+                            {{ frm_estadio.country.label }}
+                            {{ frm_estadio.country }}
+                            
+                            {{ frm_estadio.crear_estadio.label }}
+                            {{ frm_estadio.crear_estadio }}                            
+                        </form>
+                    </div>
+                    <p class="Admin__paragraph">Borrar estadio de la nomima perro</p>
+
+                    <div class="Admin__formulario">
+                        <form action="#" method="post">
+                            {{ frm_estadio.Id.label }}
+                            {{ frm_estadio.Id }}
+                            
+                            {{ frm_estadio.delete_estadio.label }}
+                            {{ frm_estadio.delete_estadio }} 
+                        </form>
+
+
+
+
+
+
                 </div>
             </div>
         </article>

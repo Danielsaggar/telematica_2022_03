@@ -21,79 +21,22 @@ class Register(FlaskForm):
 
 class Arbitrator(FlaskForm):
     name = StringField("Nombre", validators=[
-        DataRequired(message="Usuario es obligartorio")])
-    Id = StringField("Id", validators=[
+        DataRequired(message="Usuario es obligartorio")])    
+    Id = IntegerField("Id", validators=[
         DataRequired(message="Id es obligartorio")])
     country= SelectField("Procedencia", choices=[("1","Alemania"),("2","Argentina"),("3","Belgica"),("4","Brasil"),
         ("5","Francia"),("6","Japon"),("7","Mexico"),("8","Polonia")])            
-    crear = SubmitField("Introducir nuevo arbitro")        
-    delete = SubmitField("Eliminar arbitro")        
+    crear_arbitro = SubmitField("Introducir nuevo Arbitro")        
+    delete_arbitro = SubmitField("Eliminar Arbitro")        
 
-class Ingresos(FlaskForm):
-    id_producto = StringField("id producto")
-    nombre = StringField("Modelos")
-    descripcion = StringField("Descripcion")
-    fecha = DateField("Fecha de ingreso")
-    stock =IntegerField("cantidad a ingresar")
-    min =IntegerField("cantidad mínima en inventario")
-    proveedor =SelectField("proveedor", choices=[()])
-    agregar_linea_existente = SubmitField("agregar linea existente")
-    agregar_nueva_linea = SubmitField("agregar nueva linea")
-    
-class Salidas(FlaskForm):
-    id_producto = StringField("id producto")
-    nombre = StringField("nombre")
-    fecha = DateField("Fecha de ingreso")
-    cantidad =IntegerField("cantidad a ingresar")       
-    guardar = SubmitField("guardar")
-
-class Usuarios(FlaskForm):
-    #tipo_usuario = StringField("tipo usuario")
-    username = StringField("username")
-    password = PasswordField("Password")       
-    guardar = SubmitField("guardar")
-    rol= SelectField("Roles", choices=[("1", "Usuario final"),("2", "Admin"), ("3", "Super admin")])
-
-class UsuariosF(FlaskForm):
-    #tipo_usuario = StringField("tipo usuario")
-    username = StringField("username")
-    password = PasswordField("Password")       
-    guardar = SubmitField("guardar")
-    rol= SelectField("Roles", choices=[("1", "Usuario final")])
-
-class Proveedores(FlaskForm):
-    nit = StringField("nit")
-    nombre = StringField("nombre")
-    guardar = SubmitField("guardar")
-    
-class Celulares(FlaskForm):
-    id_celulares = StringField("Modelo celular")
-    nombre = StringField("nombre")
-    stock = StringField("stock")
-    Buscar = SubmitField("Buscar")
-    min = SubmitField("Debajo del mínimo")
-
-class g_prov(FlaskForm):
-    nit= StringField("NIT")
-    name = StringField("Nombre")
-    edit = SubmitField("Actualizar")
-    delete = SubmitField("Eliminar")
-    Crear = SubmitField("Crear")
-
-class g_usuario(FlaskForm):
-    id= StringField("id")
-    name = StringField("Nombre")
-    rol= SelectField("Roles", choices=[("1", "Usuario final"),("2", "Admin"), ("3", "Super admin")])
-    password = PasswordField("Contraseña")
-    delete = SubmitField("ELIMINAR")
-    search = SubmitField("BUSCAR")
-    edit = SubmitField("ACTUALIZAR")
-
-class g_usuarioF(FlaskForm):
-    id= StringField("id")
-    name = StringField("Nombre")
-    rol= SelectField("Roles", choices=[("1", "Usuario final")])
-    password = PasswordField("Contraseña")
-    delete = SubmitField("ELIMINAR")
-    search = SubmitField("BUSCAR")
-    edit = SubmitField("ACTUALIZAR")
+class Stadium(FlaskForm):
+    name = StringField("Nombre", validators=[
+        DataRequired(message="Usuario es obligartorio")])
+    capacidad = IntegerField("Capacidad", validators=[
+        DataRequired(message="capacidad es obligartorio")])
+    Id = IntegerField("Id", validators=[
+        DataRequired(message="Id es obligartorio")])
+    country= SelectField("Procedencia", choices=[("Alemania"),("Argentina"),("Belgica"),("Brasil"),
+        ("Francia"),("Japon"),("Mexico"),("Polonia")])            
+    crear_estadio = SubmitField("Introducir nuevo Estadio")        
+    delete_estadio = SubmitField("Eliminar Estadio")     

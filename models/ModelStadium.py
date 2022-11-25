@@ -1,11 +1,11 @@
 from .entities.User import Users
 
-class ModelArbitrator():
+class ModelStadium():
     @classmethod
-    def AllArbitrator(self,db):
+    def AllStadium(self,db):
         try:
             cursor=db.connection.cursor()
-            sql="SELECT id_arbitro,Nombre,Equipo as Procedencia FROM Arbitros, Equipos WHERE Procedencia=id_Equipos"
+            sql="SELECT id_estadio,Estadio,Capacidad,Ubicación FROM Estadios"
             cursor.execute(sql)
             rows = cursor.fetchall()    
             return (rows)            
@@ -13,11 +13,11 @@ class ModelArbitrator():
             raise Exception(ex)
     
     @classmethod
-    def create(self,db,name,country):
+    def create(self,db,name,country,capacidad):
         try:
             cursor=db.connection.cursor()                        
-            cursor.execute("INSERT INTO Arbitros (Nombre,Procedencia) VALUES(%s,%s)",
-                (name,country))
+            cursor.execute("INSERT INTO Estadios (Estadio,Capacidad,Ubicación) VALUES(%s,%s,%s)",
+                (name,capacidad,country))
             db.connection.commit()
             print("Funciona")    
         except Exception as ex:
@@ -28,7 +28,7 @@ class ModelArbitrator():
         try:
             id=str(id)
             cursor=db.connection.cursor()                        
-            cursor.execute("DELETE FROM Arbitros WHERE id_arbitro = "+id+"")
+            cursor.execute("DELETE FROM Estadios WHERE id_estadio = "+id+"")
             db.connection.commit()
             print("Funciona")    
         except Exception as ex:

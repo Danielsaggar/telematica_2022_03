@@ -24,7 +24,7 @@
                 <a href="{{ url_for('results') }}" class="nav__links">Fechas y resultados</a>
             </li>
             <li class="nav__item">
-                <a href="3" class="nav__links">En vivo</a>
+                <a href="#" class="nav__links">En vivo</a>
             </li>
             <li class="nav__item">
                 <a href="{{ url_for('log') }}" class="nav__links">Iniciar sesion</a>
@@ -33,7 +33,16 @@
             <li class="nav__item">
                 <a href="{{ url_for('register') }}" class="nav__links">Registrarse</a>
             </li>
+        
+            {% block header %} {% endblock %}
+
+            <li class="nav__item">
+                <a href="{{ url_for('logout') }}" class="nav__links">logout</a>
+            </li>
+        
         </ul>
+
+        
 
     </nav>
 </header>

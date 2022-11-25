@@ -6,12 +6,13 @@ from flask_mysqldb import MySQL
 from flask_login import LoginManager, login_user, logout_user, login_required
 import os
 from werkzeug.utils import escape
-from forms.formularios import Register, Arbitrator, Usuarios, Proveedores, Celulares, Login, g_usuario, g_prov, UsuariosF, g_usuarioF
+from forms.formularios import Register, Arbitrator, Stadium,Login
 
 #models
 from models.ModelUser import ModelUser
 from models.ModelTable import ModelTable
 from models.ModelArbitrator import ModelArbitrator
+from models.ModelStadium import ModelStadium
 
 #entities
 from models.entities.User import Users
@@ -23,6 +24,7 @@ app = Flask(__name__)
 Login_Manager_app=LoginManager(app)
 db=MySQL(app)
 global Type
+Type=0
 
 @Login_Manager_app.user_loader
 def load_user(id):
@@ -31,13 +33,16 @@ def load_user(id):
 
 @app.route("/", methods=["GET", "POST"])
 def home():    
-    data=ModelTable.positions(db)    
-    return render_template("index.html", table=data)
+    global Type
+    data=ModelTable.positions(db)                 
+    return render_template("index.html", table=data, Type=Type)
+    
 
 @app.route("/Results", methods=["GET", "POST"])
 def results():        
+    global Type
     data=ModelTable.positions(db)    
-    return render_template("Results.html", table=data)
+    return render_template("Results.html", table=data, Type=Type)
 
 @app.route("/Register", methods=["GET", "POST"])
 def register():    
@@ -46,9 +51,9 @@ def register():
     if request.method=="POST":    
         user= Users(frm.cellphone.data, frm.username.data, frm.password.data, 0) 
         ModelArbitrator.create(db,user)  
-        return redirect ("/Login")
+        return redirect ("/logout")
     else:
-        return render_template("register.html", frm=frm, table=data) 
+        return render_template("register.html", frm=frm, table=data, Type=Type) 
 
     
 @app.route("/Login", methods=["GET", "POST"])
@@ -67,43 +72,54 @@ def log():
                 login_user(logged)
                 Type=(logged.type)
                 print(Type)
-                return redirect ("/Menu")
+                return redirect ("/")
             else:
                 flash("Weon ta mal")
-            return render_template("Login.html", frm=frm)
+            return render_template("Login.html", frm=frm, Type=Type)
         else:
             flash("Weon no existe")
-            return render_template("Login.html", frm=frm)
+            return render_template("Login.html", frm=frm, Type=Type)
     else:
-        return render_template("Login.html", frm=frm)
+        return render_template("Login.html", frm=frm, Type=Type)
 
-@app.route("/Menu", methods=["GET", "POST"])
-@login_required
-def menu():   
+@app.route("/logout")
+def logout():
     global Type
-    print("Entre a menu: ",Type)
-    if Type==3:       
-        return render_template("/admin/Menu.html")
-    elif Type==2:
-        return render_template("/commentator/Menu.html")
-    elif Type==1:
-        return render_template("/guest/Menu.html") 
-    else:    
-        return redirect ("/Login")
+    logout_user()
+    Type=0
+    return redirect ("/Login")
     
 @app.route("/Config", methods=["GET", "POST"])
 @login_required
 def conf():   
-    if Type==3:     
-        frm = Arbitrator()  
-        data=ModelArbitrator.AllArbitrator(db)   
+    if Type==3:             
+        frm_estadio = Stadium()  
+        frm_arbitro = Arbitrator()  
+        arbitrator=ModelArbitrator.AllArbitrator(db)   
+        stadium=ModelStadium.AllStadium(db)  
+        
         if request.method=="POST":   
-            if 'crear' in request.form: 
-                name=frm.name.data
-                country=frm.country.data                
+            if 'crear_arbitro' in request.form: 
+                name=frm_arbitro.name.data
+                country=frm_arbitro.country.data                
                 ModelArbitrator.create(db,name,country) 
-                return redirect ("/Config")               
-        return render_template("/admin/Config.html", data=data, frm=frm)
+                return redirect ("/Config")    
+            if 'delete_arbitro' in request.form: 
+                id=frm_arbitro.Id.data                           
+                ModelArbitrator.delete(db,id) 
+                return redirect ("/Config")    
+            if 'crear_estadio' in request.form: 
+                name=frm_estadio.name.data
+                country=frm_estadio.country.data                
+                capacidad=frm_estadio.capacidad.data  
+                ModelStadium.create(db,name,country,capacidad) 
+                return redirect ("/Config")    
+            if 'delete_estadio' in request.form: 
+                id=frm_estadio.Id.data                           
+                ModelStadium.delete(db,id) 
+                return redirect ("/Config")             
+        return render_template("/admin/Config.html", 
+            Arbitrator=arbitrator,Stadium=stadium, frm_arbitro=frm_arbitro, frm_estadio=frm_estadio)
     else:
         return redirect ("/")
 
