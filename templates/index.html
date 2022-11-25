@@ -5,7 +5,10 @@ Qatar 2022
 {% endblock %}
 
 {% block content %}
-<section class="container about">
+<link rel ="stylesheet" href="{{ url_for('static',filename='css/estilos.css') }}">
+<link rel ="stylesheet" href="{{ url_for('static',filename='css/index.css') }}">
+<div class="root">
+<section class="containerabout">
     <h2 class="subtitle">Tabla de posiciones</h2>
     
 
@@ -44,4 +47,5 @@ Qatar 2022
 
 
 </section>
+</div>
 {% endblock %}

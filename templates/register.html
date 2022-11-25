@@ -5,16 +5,17 @@ Login
 {% endblock %}
 {% block content %}
 <link rel ="stylesheet" href="{{ url_for('static',filename='css/estilos.css') }}">
-
+<link rel ="stylesheet" href="{{ url_for('static',filename='css/Registro.css') }}">
     <div class="login_box">
-        <img class="avatar" src="/static/resources/logo.png" alt="logo">
-            <h1>Registro</h1>           
-                <form action="" method="post">
+        
+                      
+                <form action="" method="post" class="formregistro">
+                    <center><img class="avatar" src="/static/resources/logo.png" alt="logo" class="logo" alt="centered image" height="598" width="398"></center>
                     {{ frm.hidden_tag() }}
                     <!--usuario-->
                     <p>
                         {{ frm.username.label }}
-                        {{ frm.username }}
+                        {{ frm.username(class="controls")}}
                         {% for error in frm.username.errors %}
                     <div>
                         {{ error }}
@@ -24,7 +25,7 @@ Login
                     <!--Celular-->
                     <p>
                         {{ frm.cellphone.label }}
-                        {{ frm.cellphone }}
+                        {{ frm.cellphone(class="controls") }}
                         {% for error in frm.username.errors %}
                     <div>
                         {{ error }}
@@ -34,21 +35,21 @@ Login
                     <!--contraseña-->
                     <p>
                         {{ frm.password.label }}
-                        {{ frm.password }}
+                        {{ frm.password(class="controls") }}
                         {% for error in frm.password.errors %}
                     <div>
                         {{ error }}
                     </div>
                     {% endfor %}
                     </p>
+                    <a href="#">¿Ya tienes una cuenta con nosotros?</a>
                     <!--boton-->
                     <p>       
                         <form action="" method="post">
-                            {{ frm.crear }}       
+                            {{ frm.crear(class="button") }}       
                         </form>                                                                                        
                     </p>
-                    <a href="#">¿Has olvidado tu contraseña?</a><br>
-                    <a href="#">¿No tienes una cuenta de usuario?</a>
+                    
                 </form>
     </div>
 {% endblock %}
