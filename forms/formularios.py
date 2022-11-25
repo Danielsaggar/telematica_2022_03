@@ -19,6 +19,16 @@ class Register(FlaskForm):
         DataRequired(message="Celular es obligartorio"),Length(min=10, max=10)])
     crear = SubmitField("Crear")    
 
+class Arbitrator(FlaskForm):
+    name = StringField("Nombre", validators=[
+        DataRequired(message="Usuario es obligartorio")])
+    Id = StringField("Id", validators=[
+        DataRequired(message="Id es obligartorio")])
+    country= SelectField("Procedencia", choices=[("1","Alemania"),("2","Argentina"),("3","Belgica"),("4","Brasil"),
+        ("5","Francia"),("6","Japon"),("7","Mexico"),("8","Polonia")])            
+    crear = SubmitField("Introducir nuevo arbitro")        
+    delete = SubmitField("Eliminar arbitro")        
+
 class Ingresos(FlaskForm):
     id_producto = StringField("id producto")
     nombre = StringField("Modelos")

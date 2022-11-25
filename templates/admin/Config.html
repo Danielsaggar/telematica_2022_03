@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+
+{% block title %}
+Qatar 2022
+{% endblock %}
+
+{% block content %}
+<main>
+    <section class="Admin container"></section>
+    <h2 class="subtitle">Modulo de configuracion</h2>
+    <p class="Admin__paragraph"> En esta seccion puede ingresar datos de los estadios, arbitros, equipos, etc</p>
+
+    <section class="Admin__container">
+        <article class="Admin__padding">
+            <div class="Admin__answer">
+                <h3 class="Admin__title">Arbitros
+                    <span class="Admin__arrow">
+                        <img src="../../static/resources/down.svg" class="Admin__img">
+                    </span>
+                </h3>
+
+                <div class="Admin__show">
+                    <script src="../../static/js/Arbitros.js"></script>
+                    <table class="container table">
+                        <tr>
+                            <!-- Info de las columnas -->
+                            <td>id</td>
+                            <td>Nombre</td>
+                            <td>Procedencia</td>
+                        </tr>
+                        {% for arbitro in data %}
+                        <tr>
+                            <td>{{ arbitro[0] }}</td>
+                            <td>{{ arbitro[1] }}</td>
+                            <td>{{ arbitro[2] }}</td>              
+                        </tr>
+                        {% endfor %} 
+                        <tbody id="Arbitros"></tbody>
+
+                    </table>
+
+                    <p class="Admin__paragraph">Ingresar datos del nuevo personaje</p>
+
+                    <div class="Admin__formulario">
+                        <form action="" method="post">
+                            {{ frm.name.label }}
+                            {{ frm.name }}
+
+                            {{ frm.country.label }}
+                            {{ frm.country }}
+                            
+                            {{ frm.crear.label }}
+                            {{ frm.crear }}                            
+                        </form>
+                    </div>
+                    <p class="Admin__paragraph">Borrar arbitro de la nomima perro</p>
+
+                    <div class="Admin__formulario">
+                        <form action="../Telematica/php/DArbitros.php" method="get">
+                            <p class="Admin__paragraph"> id_Arbitro: <input class="Admin__text" type="text" name="id_Arbitros"></p>
+                            <br><br>
+                            <input class="Admin__button" type="submit" value="Delete pitador">
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </article>
+
+
+        <article class="Admin__padding">
+            <div class="Admin__answer">
+                <h3 class="Admin__title">Estadios
+                    <span class="Admin__arrow">
+                        <img src="../../static/resources/down.svg" class="Admin__img">
+                    </span>
+                </h3>
+
+                <div class="Admin__show">
+                    <script src="../../static/js/Estadios.js"></script>
+                    <table class="container table">
+                        <thead>
+                            <!-- Info de las columnas -->
+                            <td>Estadio</td>
+                            <td>Capacidad</td>
+                            <td>Ubicación</td>
+                        </thead>
+                        <tbody id="Estadios"></tbody>
+                    </table>
+                </div>
+            </div>
+        </article>
+
+
+        <article class="Admin__padding">
+            <div class="Admin__answer">
+                <h3 class="Admin__title">Grupo1
+                    <span class="Admin__arrow">
+                        <img src="../../static/resources/down.svg" class="Admin__img">
+                    </span>
+                </h3>
+                </div>
+            </div>
+        </article>
+    </section>
+
+
+</main>
+<script src="../../static/js/slideArbitros.js"></script>
+{% endblock %}

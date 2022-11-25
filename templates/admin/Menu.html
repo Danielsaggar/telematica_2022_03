@@ -6,20 +6,14 @@ Home
 
 {% block content %}
 <div class="Bani">
-    Bienvenidos
+    Bienvenidos Admin
 </div>
 <div class="inf">
     Bienvenidos a la plataforma para gestión del mundial:
+    <h1>{{ current_user.type }}</h1>
+    <h1><a href="{{ url_for('conf') }}">Configuraciones</a></h1>
+    <h1><a href="{{ url_for('register') }}">programación</a></h1>
 </div>
-<div class="boxB">
-    <div class="boxA">
-        <a id="BotL"   href="#">Configuración</a>
-    </div>
-    <div class="boxA">
-        <a id="BotM" href="#">Programación</a>
-    </div>
-    <div class="boxA">
-        <a id="BotR" href="#">Visualizar</a>
-    </div>    
+   
 </div>
 {% endblock %}
