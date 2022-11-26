@@ -6,7 +6,7 @@ from flask_mysqldb import MySQL
 from flask_login import LoginManager, login_user, logout_user, login_required
 import os
 from werkzeug.utils import escape
-from forms.formularios import Register, Arbitrator, Stadium,Login
+from forms.formularios import Register, Arbitrator, Stadium,Login, Equipos, jugadores
 
 #models
 from models.ModelUser import ModelUser
@@ -94,6 +94,8 @@ def logout():
 def conf():   
     if Type==3:             
         frm_estadio = Stadium()  
+        frm_jugador = jugadores()
+        frm_equipos= Equipos()
         frm_arbitro = Arbitrator()  
         arbitrator=ModelArbitrator.AllArbitrator(db)   
         stadium=ModelStadium.AllStadium(db)  
@@ -119,7 +121,7 @@ def conf():
                 ModelStadium.delete(db,id) 
                 return redirect ("/Config")             
         return render_template("/admin/Config.html", 
-            Arbitrator=arbitrator,Stadium=stadium, frm_arbitro=frm_arbitro, frm_estadio=frm_estadio)
+            Arbitrator=arbitrator,Stadium=stadium, frm_arbitro=frm_arbitro, frm_estadio=frm_estadio,frm_equipos=frm_equipos, frm_jugador=frm_jugador)
     else:
         return redirect ("/")
 
