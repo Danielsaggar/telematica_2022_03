@@ -133,7 +133,7 @@ def conf():
                 ModelStadium.delete(db,id) 
                 return redirect ("/Config")             
         return render_template("/admin/Config.html", 
-            Arbitrator=arbitrator,Stadium=stadium, frm_arbitro=frm_arbitro, frm_estadio=frm_estadio,frm_equipos=frm_equipos, frm_jugador=frm_jugador)
+            Arbitrator=arbitrator,Stadium=stadium, frm_arbitro=frm_arbitro, frm_estadio=frm_estadio,frm_equipos=frm_equipos, frm_jugador=frm_jugador,Type=Type)
     else:
         return redirect ("/")
 
@@ -141,14 +141,14 @@ def conf():
 @login_required
 def progamming():   
     if Type==3:       
-        return render_template("/admin/Menu.html")
+        return render_template("/admin/Menu.html",Type=Type)
     else:
         return redirect ("/")
     
 @app.route("/Comment", methods=["GET", "POST"])
 @login_required
 def comment():  
-    global comentario 
+    global comentario, Type
     if Type==2:       
         now=datetime.now()
         frm=commentator()
@@ -164,7 +164,7 @@ def comment():
             if 'delete' in request.form: 
                 comentario=0                                        
                 ModelComentarios.clean(db) 
-        return render_template("/commentator/comment.html",frm=frm)
+        return render_template("/commentator/comment.html",frm=frm,Type=Type)
     else:
         return redirect ("/")
 
