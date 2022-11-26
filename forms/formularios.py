@@ -40,3 +40,9 @@ class Stadium(FlaskForm):
         ("Francia"),("Japon"),("Mexico"),("Polonia")])            
     crear_estadio = SubmitField("Introducir nuevo Estadio")        
     delete_estadio = SubmitField("Eliminar Estadio")     
+
+class commentator(FlaskForm):
+    comment = StringField("Comentario: ", validators=[
+        DataRequired(message="Usuario es obligartorio")])           
+    create = SubmitField("Nuevo comentario: ")        
+    delete = SubmitField("Eliminar ")    

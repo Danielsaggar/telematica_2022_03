@@ -1,28 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}
-Login
-{% endblock %}
-
-{% block header %} 
-
-    {% if Type == 3 %}
-    <ul class="nav">
-        <li><a href="#" class="nav__item">Ajustes</a>
-            <ul>
-            <li><a href="#"  class="ajustes">Programacion</a></li>
-            <li><a href="{{ url_for('conf') }}" class="ajustes">Configuraciones</a></li>
-            </ul>
-        </li>
-    </ul>
-    {% endif %}
-    
-    {% if Type == 2 %}
-    <li class="nav__item">
-        <a href="#" class="nav__links">Comentar</a>
-    </li>
-    {% endif %}
-
+Registro
 {% endblock %}
 
 {% block content %}

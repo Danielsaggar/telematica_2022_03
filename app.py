@@ -6,13 +6,20 @@ from flask_mysqldb import MySQL
 from flask_login import LoginManager, login_user, logout_user, login_required
 import os
 from werkzeug.utils import escape
-from forms.formularios import Register, Arbitrator, Stadium,Login
+from forms.formularios import Register, Arbitrator, Stadium,Login,commentator
+
+#Importar Json para manejo de querys en JS
+import json
+
+#fecha y hora
+from datetime import datetime
 
 #models
 from models.ModelUser import ModelUser
 from models.ModelTable import ModelTable
 from models.ModelArbitrator import ModelArbitrator
 from models.ModelStadium import ModelStadium
+from models.ModelComentarios import ModelComentarios
 
 #entities
 from models.entities.User import Users
@@ -23,8 +30,9 @@ from models.entities.User import Users
 app = Flask(__name__)
 Login_Manager_app=LoginManager(app)
 db=MySQL(app)
-global Type
+global Type, comentario 
 Type=0
+comentario =0
 
 @Login_Manager_app.user_loader
 def load_user(id):
@@ -34,7 +42,7 @@ def load_user(id):
 @app.route("/", methods=["GET", "POST"])
 def home():    
     global Type
-    data=ModelTable.positions(db)                 
+    data=ModelTable.positions(db)            
     return render_template("index.html", table=data, Type=Type)
     
 
@@ -55,7 +63,11 @@ def register():
     else:
         return render_template("register.html", frm=frm, table=data, Type=Type) 
 
-    
+@app.route("/live")
+def live():
+    global Type        
+    return render_template("live.html", Type=Type) 
+       
 @app.route("/Login", methods=["GET", "POST"])
 def log():
     user= Users(0, "invitado", "invitado", 0)  
@@ -130,6 +142,35 @@ def progamming():
         return render_template("/admin/Menu.html")
     else:
         return redirect ("/")
+    
+@app.route("/Comment", methods=["GET", "POST"])
+@login_required
+def comment():  
+    global comentario 
+    if Type==2:       
+        now=datetime.now()
+        frm=commentator()
+        fecha=str(now.date())
+        hora=str(now.hour)+":"+str(now.minute)+":"+str(now.second)
+        print(fecha+" "+hora)
+        if request.method=="POST":   
+            if 'create' in request.form: 
+                comentario=comentario+1
+                comment=frm.comment.data                             
+                ModelComentarios.new(db,comentario,comment)   
+                print("Holi")              
+            if 'delete' in request.form: 
+                comentario=0                                        
+                ModelComentarios.clean(db) 
+        return render_template("/commentator/comment.html",frm=frm)
+    else:
+        return redirect ("/")
+
+@app.route("/data", methods=["GET"])
+def data():        
+    data=ModelComentarios.last(db)            
+    y = json.dumps(data)      
+    return (y)
 
 app.config.from_object(config['development'])
 app.run()
