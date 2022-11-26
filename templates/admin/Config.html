@@ -8,7 +8,7 @@ Configuraciones
 <main>
     <section class="Admin container"></section>
     <h2 class="subtitle">Modulo de configuracion</h2>
-    <p class="Admin__paragraph"> En esta seccion puede ingresar datos de los estadios, arbitros, equipos, etc</p>
+    
 
     <section class="Admin__container">
         <article class="Admin__padding">
@@ -24,7 +24,7 @@ Configuraciones
                     <table class="container table">
                         <tr>
                             <!-- Info de las columnas -->
-                            <td>id</td>
+                            <td>Id</td>
                             <td>Nombre</td>
                             <td>Procedencia</td>
                         </tr>
@@ -39,7 +39,7 @@ Configuraciones
 
                     </table>
 
-                    <p class="Admin__paragraph">Ingresar datos del nuevo personaje</p>
+                    <p class="Admin__paragraph">Ingrese los datos del nuevo arbitro</p>
 
                     <div class="Admin__formulario">
                         <form action="" method="post">
@@ -47,21 +47,20 @@ Configuraciones
                             {{ frm_arbitro.name }}
 
                             {{ frm_arbitro.country.label }}
-                            {{ frm_arbitro.country }}
-                            
-                            {{ frm_arbitro.crear_arbitro.label }}
-                            {{ frm_arbitro.crear_arbitro }}                            
+                            {{ frm_arbitro.country }}<br>
+                            <br>
+                            {{ frm_arbitro.crear_arbitro(class="text") }}                            
                         </form>
                     </div>
-                    <p class="Admin__paragraph">Borrar arbitro de la nomima perro</p>
+                    <p class="Admin__paragraph">Borrar arbitro de la nomima </p>
 
                     <div class="Admin__formulario">
                         <form action="#" method="post">
                             {{ frm_arbitro.Id.label }}
-                            {{ frm_arbitro.Id }}
+                            {{ frm_arbitro.Id }}<br>
                             
-                            {{ frm_arbitro.delete_arbitro.label }}
-                            {{ frm_arbitro.delete_arbitro }} 
+                            <br>
+                            {{ frm_arbitro.delete_arbitro(class="text") }} 
                         </form>
 
                     </div>
@@ -70,7 +69,7 @@ Configuraciones
 
             </div>
         </article>
-
+        
 
         <article class="Admin__padding">
             <div class="Admin__answer">
@@ -85,7 +84,7 @@ Configuraciones
                     <table class="container table">
                         <tr>
                             <!-- Info de las columnas -->
-                            <td>sede</td>
+                            <td>Sede</td>
                             <td>Estadio</td>
                             <td>Capacidad</td>
                             <td>Ubicación</td>
@@ -113,9 +112,9 @@ Configuraciones
 
                             {{ frm_estadio.country.label }}
                             {{ frm_estadio.country }}
+                            <br><br>
                             
-                            {{ frm_estadio.crear_estadio.label }}
-                            {{ frm_estadio.crear_estadio }}                            
+                            {{ frm_estadio.crear_estadio(class="text") }}                            
                         </form>
                     </div>
                     <p class="Admin__paragraph">Borrar estadio de la nomima perro</p>
@@ -123,32 +122,106 @@ Configuraciones
                     <div class="Admin__formulario">
                         <form action="#" method="post">
                             {{ frm_estadio.Id.label }}
-                            {{ frm_estadio.Id }}
+                            {{ frm_estadio.Id }}<br><br>
                             
-                            {{ frm_estadio.delete_estadio.label }}
-                            {{ frm_estadio.delete_estadio }} 
+                           
+                            {{ frm_estadio.delete_estadio(class="text") }} 
                         </form>
-
-
-
-
 
 
                 </div>
             </div>
         </article>
-
-
+<!-- Grupo 1 -->
         <article class="Admin__padding">
             <div class="Admin__answer">
-                <h3 class="Admin__title">Grupo1
+                <h3 class="Admin__title">Creacion de equipos
                     <span class="Admin__arrow">
                         <img src="../../static/resources/down.svg" class="Admin__img">
                     </span>
                 </h3>
-                </div>
+
+                <div class="Admin__show">
+                    <script src="../../static/js/equipo.js"></script>
+                    <div class="drag-area">
+                        <h2>Arrastra y suelta el logo del equipo</h2>
+                        <span></span>
+                    
+                            <input type="file" id="uploadFile" name="uploadFile" accept=".jpg .png .jpeg">
+                            
+                        </div>
+                        <div class="Admin__eqp">
+                            <form action="" method="post">
+                                {{ frm_equipos.group.label }}
+                                {{ frm_equipos.group }}<br><br>
+                                {{ frm_equipos.numeq.label }}
+                                {{ frm_equipos.numeq }}<br><br>
+
+                                {{ frm_equipos.nameeq.label }}
+                                {{ frm_equipos.nameeq}}<br><br>
+    
+                                {{ frm_equipos.namen.label }}
+                                {{ frm_equipos.namen}}
+                                
+                                <br><br>
+                                
+                                {{ frm_equipos.crear_equipo(class="text") }}                            
+                            </form>
+                        </div>
+                   
+                 
+                    
+                   
             </div>
         </article>
+<!-- Grupo 2-->
+<article class="Admin__padding">
+    <div class="Admin__answer">
+        <h3 class="Admin__title">Grupo 2
+            <span class="Admin__arrow">
+                <img src="../../static/resources/down.svg" class="Admin__img">
+            </span>
+        </h3>
+
+        <div class="Admin__show">
+            <script src="../../static/js/equipo.js"></script>
+            <div class="drag-area">
+                <h2>Arrastra y suelta el logo del equipo</h2>
+                <span></span>
+            
+                    <input type="file" id="uploadFile" name="uploadFile" accept=".jpg .png .jpeg">
+                    
+                </div>
+                <div class="Admin__eqp">
+                    <form action="" method="post">
+                        {{ frm_jugador.equipo.label }}
+                        {{ frm_jugador.equipo }}<br><br>
+
+                        {{ frm_jugador.numjug.label }}
+                        {{ frm_jugador.numjug}}
+                        
+                        <br><br>
+                        {{ frm_jugador.namejug.label }}
+                        {{ frm_jugador.namejug}}<br><br>
+
+                        {{ frm_jugador.apejug.label }}
+                        {{ frm_jugador.apejug}}
+                        
+                        <br><br>
+                        
+                        <br><br>
+                        
+                        {{ frm_jugador.crear_jugador(class="text") }}                            
+                    </form>
+                </div>
+           
+         
+            
+           
+    </div>
+</article>    
+       
+        
     </section>
 
 

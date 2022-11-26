@@ -46,3 +46,22 @@ class commentator(FlaskForm):
         DataRequired(message="Usuario es obligartorio")])           
     create = SubmitField("Nuevo comentario: ")        
     delete = SubmitField("Eliminar ")    
+    
+class Equipos(FlaskForm):
+    group=SelectField("Grupo", choices=[("A"),("B")])
+    numeq=SelectField("Numero de equipo", choices=[("1"),("2"),("3"),("4")])
+    nameeq =StringField("Nombre del equipo",validators=[
+        DataRequired(message="Nombre del equipo es obligartorio")] )
+    namen =StringField("Nombre del entrenador",validators=[
+        DataRequired(message="Nombre del equipo es obligartorio")] )
+    crear_equipo = SubmitField("Crear nuevo equipo")
+
+class jugadores(FlaskForm):
+    equipo=SelectField("Nombre del equipo", choices=[("1"),("2"),("3"),("4"),("5"),("6"),("7"),("8")])
+    numjug=SelectField("Numero del jugador ", choices=[("1"),("2"),("3"),("4"),("5"),("6"),("7"),("8"),("9"),("10"),("11")])
+    namejug =StringField("Nombre del jugador",validators=[
+        DataRequired(message="Nombre del jugador es obligartorio")] )
+    apejug =StringField("Apellido  del jugador",validators=[
+        DataRequired(message="Apellido del jugador es obligartorio")] )
+  
+    crear_jugador = SubmitField("Introducir nuevo jugador")    
