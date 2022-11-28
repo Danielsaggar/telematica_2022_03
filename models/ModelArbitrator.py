@@ -5,7 +5,7 @@ class ModelArbitrator():
     def AllArbitrator(self,db):
         try:
             cursor=db.connection.cursor()
-            sql="SELECT id_arbitro,Nombre,Equipo as Procedencia FROM Arbitros, Equipos WHERE Procedencia=id_Equipos"
+            sql="SELECT id_arbitro,Nombre,Procedencia FROM Arbitros"
             cursor.execute(sql)
             rows = cursor.fetchall()    
             return (rows)            

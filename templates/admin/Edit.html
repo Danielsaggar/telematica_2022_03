@@ -1,0 +1,287 @@
+{% extends "base.html" %}
+
+{% block title %}
+Configuraciones
+{% endblock %}
+
+{% block content %}
+<main>
+    <section class="Admin container"></section>
+    <h2 class="subtitle">Modulo de configuracion</h2>
+    
+
+    <section class="Admin__container">
+        <article class="Admin__padding">
+            <div class="Admin__answer">
+                <h3 class="Admin__title">Arbitros
+                    <span class="Admin__arrow">
+                        <img src="../../static/resources/down.svg" class="Admin__img">
+                    </span>
+                </h3>
+
+                <div class="Admin__show">                    
+                    <table class="container table">
+                        <tr>
+                            <!-- Info de las columnas -->
+                            <td>Id</td>
+                            <td>Nombre</td>
+                            <td>Procedencia</td>
+                        </tr>
+                        {% for arbitro in Arbitrator %}
+                        <tr>
+                            <td>{{ arbitro[0] }}</td>
+                            <td>{{ arbitro[1] }}</td>
+                            <td>{{ arbitro[2] }}</td>              
+                        </tr>
+                        {% endfor %} 
+                        <tbody id="Arbitros"></tbody>
+
+                    </table>
+
+                    <p class="Admin__paragraph">Ingrese los nuevos datos del arbitro</p>
+
+                    <div class="Admin__formulario">
+                        <form action="" method="post">
+                            {{ frm_arbitro.Id.label }}
+                            {{ frm_arbitro.Id }}
+
+                            {{ frm_arbitro.name.label }}
+                            {{ frm_arbitro.name }}
+
+                            {{ frm_arbitro.country.label }}
+                            {{ frm_arbitro.country }}<br><br>
+
+                            {{ frm_arbitro.editar_arbitro(class="text") }}<br><br>                            
+                        </form>
+                    </div>
+                    <div class="Admin__formulario">
+                        <p class="Admin__paragraph">Borrar arbitro de la nomima </p>
+                        <form action="#" method="post">
+                            {{ frm_arbitro.Id.label }}
+                            {{ frm_arbitro.Id }}<br><br>
+                            
+                           
+                            {{ frm_arbitro.delete_arbitro(class="text") }}<br><br>   
+                        </form>
+                    </div>                    
+                </div>
+
+            </div>
+        </article>
+        
+        <article class="Admin__padding">
+            <div class="Admin__answer">
+                <h3 class="Admin__title">Estadios
+                    <span class="Admin__arrow">
+                        <img src="../../static/resources/down.svg" class="Admin__img">
+                    </span>
+                </h3>
+
+                <div class="Admin__show">                    
+                    <table class="container table">
+                        <tr>
+                            <!-- Info de las columnas -->
+                            <td>Sede</td>
+                            <td>Estadio</td>
+                            <td>Capacidad</td>
+                            <td>Ubicación</td>
+                        </tr>
+                        {% for estadio in Stadium %}
+                        <tr>
+                            <td>{{ estadio[0] }}</td>
+                            <td>{{ estadio[1] }}</td>
+                            <td>{{ estadio[2] }}</td>              
+                            <td>{{ estadio[3] }}</td>              
+                        </tr>
+                        {% endfor %} 
+                        <tbody id="Estadios"></tbody>
+                    </table>
+
+                    <p class="Admin__paragraph">Ingresar datos del nuevo estadio</p>
+
+                    <div class="Admin__formulario">
+                        <form action="" method="post">
+                            {{ frm_estadio.Id.label }}
+                            {{ frm_estadio.Id }}
+
+                            {{ frm_estadio.name.label }}
+                            {{ frm_estadio.name }}
+
+                            {{ frm_estadio.capacidad.label }}
+                            {{ frm_estadio.capacidad }}
+
+                            {{ frm_estadio.country.label }}
+                            {{ frm_estadio.country }}
+                            <br><br>
+                            
+                            {{ frm_estadio.editar_estadio(class="text") }}<br><br>                              
+                        </form>
+                        <div class="Admin__formulario">
+                            <form action="#" method="post">
+                                {{ frm_estadio.Id.label }}
+                                {{ frm_estadio.Id }}<br><br>
+                                
+                               
+                                {{ frm_estadio.delete_estadio(class="text") }}<br><br>   
+                            </form>
+                        </div>
+                    </div>                                            
+                </div>
+            </div>
+        </article>
+        
+        <article class="Admin__padding">
+            <div class="Admin__answer">
+                <h3 class="Admin__title">Creacion de equipos
+                    <span class="Admin__arrow">
+                        <img src="../../static/resources/down.svg" class="Admin__img">
+                    </span>
+                </h3>
+
+                <div class="Admin__show">
+                    <table class="container table">
+                        <tr>
+                            <!-- Info de las columnas -->
+                            <td>Equipo</td>
+                            <td>Grupo</td>
+                            <td>Entrenador</td>
+                            <td>Escudo</td>
+                        </tr>                        
+                        {%for i in range(0, len)%}                        
+                        <tr>
+                            <td>{{ Teams[i][0] }}</td>
+                            <td>{{ Teams[i][3] }}</td>
+                            <td>{{ Teams[i][4] }}</td>                                 
+                            <td><img src="{{ escudo[i] }}" alt="N/A"></td>        
+                            
+                        </tr>                        
+                        {% endfor %}
+                        <tbody id="Arbitros"></tbody>
+
+                    </table>
+
+                    <script src="../../static/js/equipo.js"></script>                                               
+                        <div class="Admin__eqp">                            
+                                <h2>Arrastra y suelta el logo del equipo</h2>
+                                <span></span>
+                                <form action="" method="post" enctype="multipart/form-data">      
+                                <div class="drag-area">
+                                    <img id="imagenPrevisualizacion">
+                                    <input type="file" id="uploadFile" name="uploadFile" accept="image/*">
+                                </div>    
+                                    {{ frm_equipos.Id.label }}
+                                    {{ frm_equipos.Id }}<br><br>
+                                
+                                    {{ frm_equipos.group.label }}
+                                    {{ frm_equipos.group }}<br><br>
+
+                                    {{ frm_equipos.numeq.label }}
+                                    {{ frm_equipos.numeq }}<br><br>
+
+                                    {{ frm_equipos.nameeq.label }}
+                                    {{ frm_equipos.nameeq}}<br><br>
+        
+                                    {{ frm_equipos.namen.label }}
+                                    {{ frm_equipos.namen}}<br><br>
+                                                                                                            
+                                    {{ frm_equipos.editar_equipo(class="text") }}<br><br>
+                                    </form>
+                                    <div class="Admin__formulario">
+                                        <form action="#" method="post">
+                                            {{ frm_equipos.Id.label }}
+                                            {{ frm_equipos.Id }}<br><br>
+                                            
+                                           
+                                            {{ frm_equipos.delete_equipo(class="text") }}<br><br>   
+                                        </form>
+                                    </div>
+
+                                </div>    
+                                
+                                
+                        </div>
+                   
+                 
+                    
+                   
+            </div>
+        </article>
+        
+        <article class="Admin__padding">
+            <div class="Admin__answer">
+                <h3 class="Admin__title">Creacion de jugador
+                    <span class="Admin__arrow">
+                        <img src="../../static/resources/down.svg" class="Admin__img">
+                    </span>
+                </h3>
+
+                <div class="Admin__show">       
+                    
+                    <table class="container table">
+                        <tr>
+                            <!-- Info de las columnas -->
+                            <td>Id</td>
+                            <td>Nombre</td>
+                            <td>Apellido</td>
+                            <td>Equipo</td>
+                            <td>Numero</td>
+                        </tr>
+                        {% for jugador in Players %}
+                        <tr>
+                            <td>{{ jugador[0] }}</td>
+                            <td>{{ jugador[1] }}</td>
+                            <td>{{ jugador[2] }}</td>              
+                            <td>{{ jugador[3] }}</td>
+                            <td>{{ jugador[4] }}</td> 
+                        </tr>
+                        {% endfor %} 
+                        <tbody id="Arbitros"></tbody>
+
+                    </table>
+
+                        <div class="Admin__eqp">
+                            <form action="" method="post">         
+                                <label for="">Equipo</label>               
+                                <select name="Nation" id="Nation" >   
+                                    {% for pais in Nation %}                              
+                                <option value="{{pais[0]}}">{{ pais[0] }}</option>       
+                                {% endfor %}                      
+                                </select><br><br>
+                                {{ frm_jugador.Id.label }}
+                                {{ frm_jugador.Id}}<br><br>
+
+                                {{ frm_jugador.numjug.label }}
+                                {{ frm_jugador.numjug}}<br><br>
+                                                        
+                                {{ frm_jugador.namejug.label }}
+                                {{ frm_jugador.namejug}}<br><br>
+
+                                {{ frm_jugador.apejug.label }}
+                                {{ frm_jugador.apejug}}<br><br>                                                
+                                                    
+                                {{ frm_jugador.editar_jugador(class="text") }}<br><br>
+                            </form>
+                            <div class="Admin__formulario">
+                                <form action="#" method="post">
+                                    {{ frm_jugador.Id.label }}
+                                    {{ frm_jugador.Id }}<br><br>
+                                    
+                                   
+                                    {{ frm_jugador.delete_jugador(class="text") }}<br><br>   
+                                </form>
+                            </div>
+                        </div>                                                                                            
+            </div>
+        </article>    
+    
+    
+    </section>   
+        
+   
+
+
+</main>
+<a href="{{ url_for('edit') }}">Modulo de edicion</a>
+<script src="../../static/js/Escudo.js"></script>
+<script src="../../static/js/slideArbitros.js"></script>
+{% endblock %}
