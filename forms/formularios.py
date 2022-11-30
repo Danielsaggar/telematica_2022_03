@@ -73,3 +73,4 @@ class jugadores(FlaskForm):
     crear_jugador = SubmitField("Introducir nuevo jugador")    
     editar_jugador = SubmitField("Editar jugador")    
     delete_jugador = SubmitField("Eliminar jugador")    
+

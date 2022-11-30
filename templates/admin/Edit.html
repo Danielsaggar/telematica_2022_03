@@ -5,6 +5,7 @@ Configuraciones
 {% endblock %}
 
 {% block content %}
+<link rel="stylesheet" href="/static/css/conf.css">
 <main>
     <section class="Admin container"></section>
     <h2 class="subtitle">Modulo de configuracion</h2>
@@ -161,14 +162,16 @@ Configuraciones
                     </table>
 
                     <script src="../../static/js/equipo.js"></script>                                               
-                        <div class="Admin__eqp">                            
+                          
+                             <div class="drag-area">                         
                                 <h2>Arrastra y suelta el logo del equipo</h2>
                                 <span></span>
                                 <form action="" method="post" enctype="multipart/form-data">      
-                                <div class="drag-area">
+                                
                                     <img id="imagenPrevisualizacion">
                                     <input type="file" id="uploadFile" name="uploadFile" accept="image/*">
-                                </div>    
+                              </div>    
+                              <div class="Admin__eqp">
                                     {{ frm_equipos.Id.label }}
                                     {{ frm_equipos.Id }}<br><br>
                                 
@@ -281,7 +284,7 @@ Configuraciones
 
 
 </main>
-<a href="{{ url_for('edit') }}">Modulo de edicion</a>
+
 <script src="../../static/js/Escudo.js"></script>
 <script src="../../static/js/slideArbitros.js"></script>
 {% endblock %}

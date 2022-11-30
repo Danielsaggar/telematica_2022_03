@@ -23,7 +23,7 @@ from models.ModelComentarios import ModelComentarios
 from models.ModelTeams import ModelTeams
 from models.ModelGroups import ModelGroups
 from models.ModelPlayer import ModelPlayer
-
+from models.Modelprogramacion import Modelprogramacion
 #entities
 from models.entities.User import Users
 
@@ -233,7 +233,12 @@ def edit():
 @login_required
 def progamming():   
     if Type==3:       
-        return render_template("/admin/Menu.html",Type=Type)
+        Group=Modelprogramacion.Group(db)
+        Arbitrator=Modelprogramacion.Arbitro(db)
+        Visitors=Modelprogramacion.Visitantes(db)
+        Locals=Modelprogramacion.Locales(db)
+        Stadium=Modelprogramacion.Estadios(db)
+        return render_template("/admin/programacion.html",Type=Type,Group=Group,Arbitrator=Arbitrator,Locals=Locals,Visitors=Visitors,Stadium=Stadium)
     else:
         return redirect ("/")
     
@@ -273,3 +278,4 @@ def status_401(error):
 app.config.from_object(config['development'])
 app.register_error_handler(401,status_401)
 app.run()
+
