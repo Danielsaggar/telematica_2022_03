@@ -279,7 +279,7 @@ def comment():
                 ArcoL=frm.ArcoL.data
                 ArcoV=frm.ArcoV.data
                 OffsideL=frm.OffsideL.data
-                OffsideV=frm.OffsideV.data     
+                OffsideV=frm.OffsideV.data 
                 Online=ModelGame.Online(db)                         
                 ModelComentarios.new(db,comentario,comment)   
                 ModelComentarios.update(db,Online, AmarillaL, AmarillaV,RojaL, RojaV,GolesL, GolesV, 
