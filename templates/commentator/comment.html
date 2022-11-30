@@ -5,51 +5,56 @@ Comentarista
 {% endblock %}
 
 {% block content %}
-<form action="" method="post">
+<link rel ="stylesheet" href="{{ url_for('static',filename='css/coment.css') }}">
+<form class="formcomment" action="" method="post">
+
+    
     {{ frm.comment.label }}
-    {{ frm.comment }}
+    {{ frm.comment }}<br><br>
+    <h3 class="text">Locales</h3>
 
     {{ frm.AmarillaL.label }}
-    {{ frm.AmarillaL }}
-
-    {{ frm.Amarillav.label }}
-    {{ frm.Amarillav }}
+    {{ frm.AmarillaL }}<br><br>
 
     {{ frm.RojaL.label }}
-    {{ frm.RojaL }}
-
-    {{ frm.RojaV.label }}
-    {{ frm.RojaV }}
-
+    {{ frm.RojaL }}<br><br>
 
     {{ frm.GolesL.label }}
-    {{ frm.GolesL }}
-
-    {{ frm.GolesV.label }}
-    {{ frm.GolesV }}
+    {{ frm.GolesL }}<br><br>
 
     {{ frm.EsquinaL.label }}
-    {{ frm.EsquinaL }}
-
-    {{ frm.EsquinaV.label }}
-    {{ frm.EsquinaV }}
+    {{ frm.EsquinaL }}<br><br>
 
     {{ frm.ArcoL.label }}
-    {{ frm.ArcoL }}
-
-    {{ frm.ArcoV.label }}
-    {{ frm.ArcoV }}
+    {{ frm.ArcoL }}<br><br>
 
     {{ frm.OffsideL.label }}
-    {{ frm.OffsideL }}
+    {{ frm.OffsideL }}<br><br>
+    
+    <h3 class="text">Visitantes</h3>
+
+    {{ frm.Amarillav.label }}
+    {{ frm.Amarillav }}<br><br>
+
+    {{ frm.RojaV.label }}
+    {{ frm.RojaV }}<br><br>
+
+    {{ frm.GolesV.label }}
+    {{ frm.GolesV }}<br><br>
+  
+    {{ frm.EsquinaV.label }}
+    {{ frm.EsquinaV }}<br><br>
+
+    {{ frm.ArcoV.label }}
+    {{ frm.ArcoV }}<br><br>
 
     {{ frm.OffsideV.label }}
-    {{ frm.OffsideV }}
+    {{ frm.OffsideV }}<br><br>
 
-    {{ frm.create.label }}
-    {{ frm.create }} 
+  
+    {{ frm.create(class="button") }} <br><br>
     
-    {{ frm.delete.label }}
-    {{ frm.delete }}
+    
+    {{ frm.delete(class="button") }}<br><br>
 </form>    
 {% endblock %}

@@ -1,0 +1,33 @@
+body {
+
+    background-image: url(/static/resources/fondito.webp);
+    background-size: cover;
+}
+
+
+.formcomment{
+    width: 400px;
+    height: 720px;
+    background: #cf6264;
+    margin: auto;
+    margin-top: 50px;
+    box-shadow: 7px 13px 37px #000;
+    padding: 20px 30px;
+    border-top: #017bab;
+    color: floralwhite;
+    font-family: Calibri;
+    font-size: 16px;
+}
+.text{
+    text-align: center;
+    font-size: 20px;
+
+}
+.button {
+    color: antiquewhite;
+    background-color: rgb(240, 74, 74); 
+    width: 160px;
+    height: 30px;
+    box-shadow: 7px 13px 37px #000;
+    border-radius: 8px;
+}
