@@ -7,68 +7,70 @@ Resultados
 {% block content %}
 <main>
     <section class="tablas">
-        <h2>Partidos Jugados</h2>
-        <script src="../static/js/Partidos.js"></script>
+        <h2 class="subtitle">Partidos Jugados</h2>
 
         <div class="tablas__container container">
 
-            <img src="/static/resources/leftarrow.svg" class="jugados__arrow" id="before">
-
-            <section class="tablas__body tablas__body--show" data-id="1">
-
+            <section class="tablas__body tablas__body--show">
                 <table class="container table">
-                    <thead>
+                    <tr>
                         <td>Local</td>
+                        <td></td>
+                        <td></td>
                         <td>Visitante</td>
-                    </thead>
-                    <tbody id="Partidos">
+                    </tr>
+                    {% for game in result %}        
+                    <tr>                                                  
+                        <td>{{ game[0] }}</td>
+                        <td>{{ game[2] }}</td>                                               
+                        <td>{{ game[3] }}</td>    
+                        <td>{{ game[1] }}</td>                    
+                    </tr>           
+                    {% endfor %} 
+                    <tbody id="Partidos1">
                     </tbody>
                 </table>
-
             </section>
-
-            <section class="tablas__body" data-id="2">
-                
-                <table class="container table">
-                    <thead>
-                        <td>Local</td>
-                        <td>Visitante</td>
-                    </thead>
-                    <tbody id="Partidos">
-                    </tbody>
-                </table>
-
-            </section>
-
-            <section class="tablas__body" data-id="3">    
-                <table class="container table">
-                    <thead>
-                        <td>Local</td>
-                        <td>Visitante</td>
-                    </thead>
-                    <tbody id="Partidos">
-                    </tbody>
-                </table>
-
-            </section>
-
-            <section class="tablas__body" data-id="4">    
-                <table class="container table">
-                    <thead>
-                        <td>Local</td>
-                        <td>Visitante</td>
-                    </thead>
-                    <tbody id="Partidos">
-                    </tbody>
-                </table>
-
-            </section>
-
-            <img src="/static/resources/rightarrow.svg" class="jugados__arrow" id="next">
 
         </div>
 
     </section>
+
+    <section>
+        <div>
+            <br>
+
+            <br>
+        </div>
+    </section>
+
+    <section class="tablas">
+        <h2 class="subtitle">Partidos Proximos</h2>
+
+        <div class="tablas__container container">
+
+            <section class="tablas__body tablas__body--show">
+                <table class="container table">
+                    <tr>
+                        <td>Local</td>
+                        <td>Visitante</td>
+                    </tr>
+                    {% for game in prox %}        
+                    <tr>                                                  
+                        <td>{{ game[0] }}</td>
+                        <td>{{ game[1] }}</td>                  
+                    </tr>           
+                    {% endfor %} 
+                    <tbody id="Proximos">
+                    </tbody>
+                </table>
+
+            </section>
+
+        </div>
+    </section>
+    
+
 </main>
 
 <script src="/static/js/slider.js"></script>

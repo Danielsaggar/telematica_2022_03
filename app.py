@@ -6,7 +6,7 @@ from flask_mysqldb import MySQL
 from flask_login import LoginManager, login_user, logout_user, login_required
 import os
 from werkzeug.utils import escape, secure_filename
-from forms.formularios import Register, Arbitrator, Stadium,Login,commentator, Equipos, jugadores
+from forms.formularios import Register, Arbitrator, Stadium,Login,commentator, Equipos, jugadores, game
 
 #Importar Json para manejo de querys en JS
 import json
@@ -47,8 +47,7 @@ def load_user(id):
 @app.route("/", methods=["GET", "POST"])
 def home():    
     global Type
-    TablaA=ModelTable.positionA(db)   
-    print(TablaA)         
+    TablaA=ModelTable.positionA(db)           
     TablaB=ModelTable.positionB(db)            
     TablaC=ModelTable.positionC(db)            
     TablaD=ModelTable.positionD(db)              
@@ -63,8 +62,10 @@ def home():
 
 @app.route("/Results", methods=["GET", "POST"])
 def results():        
-    global Type       
-    return render_template("Results.html", Type=Type)
+    global Type      
+    prox=ModelTable.prox(db) 
+    result=ModelTable.result(db)
+    return render_template("Results.html", Type=Type,prox=prox,result=result)
 
 @app.route("/Register", methods=["GET", "POST"])
 def register():    
@@ -245,12 +246,22 @@ def edit():
 @login_required
 def progamming():   
     if Type==3:       
+        frm = game()        
         Group=Modelprogramacion.Group(db)
         Arbitrator=Modelprogramacion.Arbitro(db)
         Visitors=Modelprogramacion.Visitantes(db)
         Locals=Modelprogramacion.Locales(db)
         Stadium=Modelprogramacion.Estadios(db)
-        return render_template("/admin/programacion.html",Type=Type,Group=Group,Arbitrator=Arbitrator,Locals=Locals,Visitors=Visitors,Stadium=Stadium)
+        if request.method=="POST":          
+            id_Local=request.form["Local"]                
+            id_Visitante=request.form["Visitante"]    
+            id_Estadio=request.form["Estadio"]    
+            id_Arbitro=request.form["Arbitro"]    
+            Hora=request.form["Hora"]    
+            Fecha=request.form["Fecha"]    
+            Modelprogramacion.Create(db,id_Local, id_Visitante, id_Estadio, id_Arbitro,Hora,Fecha)
+            return redirect ("/Programming")    
+        return render_template("/admin/programacion.html",Type=Type,Group=Group,Arbitrator=Arbitrator,Locals=Locals,Visitors=Visitors,Stadium=Stadium, frm =frm )
     else:
         return redirect ("/")
     
@@ -299,6 +310,19 @@ def data():
     y = json.dumps(data)      
     return (y)
 
+@app.route("/score", methods=["GET"])
+def score():        
+    global Online
+    data=ModelGame.Score(db)            
+    y = json.dumps(data)      
+    return (y)
+
+@app.route("/teams", methods=["GET"])
+def teams():        
+    global Online
+    data=ModelGame.Teams(db)            
+    y = json.dumps(data)      
+    return (y)
 
 def status_401(error):
     return redirect ("/Login")

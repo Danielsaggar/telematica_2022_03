@@ -84,5 +84,8 @@ class jugadores(FlaskForm):
         DataRequired(message="Apellido del jugador es obligartorio")] )
     crear_jugador = SubmitField("Introducir nuevo jugador")    
     editar_jugador = SubmitField("Editar jugador")    
-    delete_jugador = SubmitField("Eliminar jugador")    
+    delete_jugador = SubmitField("Eliminar jugador")   
+
+class game(FlaskForm):          
+    Registrar = SubmitField("Registrar")  
 
