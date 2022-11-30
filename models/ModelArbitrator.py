@@ -5,7 +5,7 @@ class ModelArbitrator():
     def AllArbitrator(self,db):
         try:
             cursor=db.connection.cursor()
-            sql="SELECT id_arbitro,Nombre,Procedencia FROM Arbitros"
+            sql="SELECT id_arbitro,Nombre,Procedencia FROM arbitros"
             cursor.execute(sql)
             rows = cursor.fetchall()    
             return (rows)            
@@ -16,7 +16,7 @@ class ModelArbitrator():
     def create(self,db,name,country):
         try:
             cursor=db.connection.cursor()                        
-            cursor.execute("INSERT INTO Arbitros (Nombre,Procedencia) VALUES(%s,%s)",
+            cursor.execute("INSERT INTO arbitros (Nombre,Procedencia) VALUES(%s,%s)",
                 (name,country))
             db.connection.commit()
             print("Funciona")    
@@ -27,7 +27,7 @@ class ModelArbitrator():
     def edit(self,db,id,name,country):
         try:
             cursor=db.connection.cursor()
-            cursor.execute("UPDATE Arbitros SET Nombre=%s, Procedencia=%s WHERE id_arbitro = %s",
+            cursor.execute("UPDATE arbitros SET Nombre=%s, Procedencia=%s WHERE id_arbitro = %s",
             (name,country,id))                                          
             db.connection.commit()
             print("Funciona")    
@@ -39,7 +39,7 @@ class ModelArbitrator():
         try:
             id=str(id)
             cursor=db.connection.cursor()                        
-            cursor.execute("DELETE FROM Arbitros WHERE id_arbitro = "+id+"")
+            cursor.execute("DELETE FROM arbitros WHERE id_arbitro = "+id+"")
             db.connection.commit()
             print("Funciona")    
         except Exception as ex:

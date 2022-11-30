@@ -5,7 +5,7 @@ class ModelStadium():
     def AllStadium(self,db):
         try:
             cursor=db.connection.cursor()
-            sql="SELECT id_estadio,Estadio,Capacidad,Ubicación FROM Estadios"
+            sql="SELECT id_estadio,Estadio,Capacidad,Ubicación FROM estadios"
             cursor.execute(sql)
             rows = cursor.fetchall()    
             return (rows)            
@@ -16,7 +16,7 @@ class ModelStadium():
     def create(self,db,name,country,capacidad):
         try:
             cursor=db.connection.cursor()                        
-            cursor.execute("INSERT INTO Estadios (Estadio,Capacidad,Ubicación) VALUES(%s,%s,%s)",
+            cursor.execute("INSERT INTO estadios (Estadio,Capacidad,Ubicación) VALUES(%s,%s,%s)",
                 (name,capacidad,country))
             db.connection.commit()
             print("Funciona")    
@@ -27,7 +27,7 @@ class ModelStadium():
     def edit(self,db,id,name,country,capacidad):
         try:
             cursor=db.connection.cursor()                
-            cursor.execute("UPDATE Estadios SET Estadio=%s, Capacidad=%s, Ubicación=%s WHERE id_estadio = %s",
+            cursor.execute("UPDATE estadios SET Estadio=%s, Capacidad=%s, Ubicación=%s WHERE id_estadio = %s",
             (name,capacidad,country,id))  
             db.connection.commit()
             print("Funciona")    
@@ -39,7 +39,7 @@ class ModelStadium():
         try:
             id=str(id)
             cursor=db.connection.cursor()                        
-            cursor.execute("DELETE FROM Estadios WHERE id_estadio = "+id+"")
+            cursor.execute("DELETE FROM estadios WHERE id_estadio = "+id+"")
             db.connection.commit()
             print("Funciona")    
         except Exception as ex:
