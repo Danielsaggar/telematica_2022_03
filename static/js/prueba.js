@@ -14,9 +14,7 @@ function act(){
                 x=data[0]                
                 const label = document.createElement("label");
                 label.innerHTML = "<label>Comentarista: "+data[1] +"<br></label>"; // <div>Hola a todos</div>
-                document.body.appendChild(label); 
-                
-                        
+                document.body.appendChild(label);                                         
             }                                 
         });      
     console.log("i: "+i);     

@@ -24,6 +24,17 @@ class ModelStadium():
             raise Exception(ex)
         
     @classmethod
+    def edit(self,db,id,name,country,capacidad):
+        try:
+            cursor=db.connection.cursor()                
+            cursor.execute("UPDATE Estadios SET Estadio=%s, Capacidad=%s, Ubicación=%s WHERE id_estadio = %s",
+            (name,capacidad,country,id))  
+            db.connection.commit()
+            print("Funciona")    
+        except Exception as ex:
+            raise Exception(ex)
+
+    @classmethod
     def delete(self,db,id):
         try:
             id=str(id)

@@ -45,7 +45,19 @@ class Stadium(FlaskForm):
 
 class commentator(FlaskForm):
     comment = StringField("Comentario: ", validators=[
-        DataRequired(message="Usuario es obligartorio")])           
+        DataRequired(message="Usuario es obligartorio")]) 
+    AmarillaL = IntegerField("AmarillaL")
+    Amarillav = IntegerField("Amarillav")
+    RojaL = IntegerField("RojaL")
+    RojaV = IntegerField("RojaV")
+    GolesL = IntegerField("GolesL")
+    GolesV = IntegerField("GolesV")
+    EsquinaL = IntegerField("EsquinaL")
+    EsquinaV = IntegerField("EsquinaV")
+    ArcoL = IntegerField("ArcoL")
+    ArcoV = IntegerField("ArcoV")
+    OffsideL = IntegerField("OffsideL")
+    OffsideV = IntegerField("OffsideV")
     create = SubmitField("Nuevo comentario: ")        
     delete = SubmitField("Eliminar ")    
     

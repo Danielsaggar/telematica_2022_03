@@ -20,6 +20,28 @@ class ModelPlayer():
             print("Funciona")    
         except Exception as ex:
             raise Exception(ex)
+
+    @classmethod
+    def edit(self,db,id,Nombre, Apellido, Equipo, Numero):
+        try:
+            cursor=db.connection.cursor()     
+            cursor.execute("UPDATE jugadores SET Nombre=%s, Apellido=%s, Equipo=%s, Numero=%s WHERE idJugadores = %s",
+            (Nombre, Apellido, Equipo, Numero, id))                   
+            db.connection.commit()
+            print("Funciona")    
+        except Exception as ex:
+            raise Exception(ex)
+        
+    @classmethod
+    def delete(self,db,id):
+        try:
+            id=str(id)
+            cursor=db.connection.cursor()                        
+            cursor.execute("DELETE FROM jugadores WHERE idJugadores = "+id+"")
+            db.connection.commit()
+            print("Funciona")    
+        except Exception as ex:
+            raise Exception(ex)
         
     @classmethod
     def AllPlayer(self,db):

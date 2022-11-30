@@ -24,6 +24,17 @@ class ModelArbitrator():
             raise Exception(ex)
         
     @classmethod
+    def edit(self,db,id,name,country):
+        try:
+            cursor=db.connection.cursor()
+            cursor.execute("UPDATE Arbitros SET Nombre=%s, Procedencia=%s WHERE id_arbitro = %s",
+            (name,country,id))                                          
+            db.connection.commit()
+            print("Funciona")    
+        except Exception as ex:
+            raise Exception(ex)
+
+    @classmethod
     def delete(self,db,id):
         try:
             id=str(id)

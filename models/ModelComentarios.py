@@ -34,3 +34,16 @@ class ModelComentarios():
             print("Funciona")     
         except Exception as ex:
             raise Exception(ex)
+    
+    @classmethod
+    def update(self,db,id_Partido, AmarillaL, AmarillaV, RojaL, RojaV,GolesL, GolesV, 
+    EsquinaL, EsquinaV, ArcoL, ArcoV, OffsideL, OffsideV):
+        try:
+            cursor=db.connection.cursor()     
+            cursor.execute("UPDATE partidos SET AmarillaL= %s, AmarillaV= %s, RojaL= %s, RojaV= %s,GolesL= %s,GolesV= %s,EsquinaL= %s,EsquinaV= %s,ArcoL= %s,ArcoV= %s,OffsideL= %s,OffsideV= %s WHERE id_Partido = %s",
+            (AmarillaL, AmarillaV, RojaL, RojaV, GolesL, GolesV, 
+            EsquinaL, EsquinaV, ArcoL, ArcoV, OffsideL, OffsideV, id_Partido))                   
+            db.connection.commit()
+            print("Funciona")    
+        except Exception as ex:
+            raise Exception(ex)

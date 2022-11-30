@@ -13,8 +13,8 @@ Qatar 2022
     <h2 class="subtitle">Tabla de posiciones</h2>
     
 
-    {% if tableA != () %}     
-    {% set pos = 1 %}
+    {% if tableA != () %}    
+    {%set pu=1%}     
     <h2 class="subtitle">Grupo A</h2>
     <table class="container table">
         <!-- Se genera una tabla (la cual se entregara a index.php) -->
@@ -31,9 +31,11 @@ Qatar 2022
             <td>DG</td>
             <td>Pts</td>
         </tr>
-        {% for team in tableA %}
-        <tr>
-            <td>{{ pos }}</td>
+        {% for team in tableA %}        
+        <tr>    
+            {% if tableA != () %}                
+            {% endif %}        
+            <td>{{ loop.index }}</td>
             <td>{{ team[0] }}</td>
             <td>{{ team[1] }}</td>
             <td>{{ team[2] }}</td>
@@ -42,18 +44,15 @@ Qatar 2022
             <td>{{ team[5] }}</td>
             <td>{{ team[6] }}</td>
             <td>{{ team[7] }}</td>  
-            <td>{{ team[8] }}</td>
-                    
-        </tr>
-        {% set pos = pos + 1 %}
+            <td>{{ team[8] }}</td>                     
+        </tr>        
         {% endfor %} 
         <tbody id="testing">
         </tbody>
     </table>
     {% endif %}
 
-    {% if tableB != () %}
-    {% set pos = 1 %}
+    {% if tableB != () %}    
     <h2 class="subtitle">Grupo B</h2>
     <table class="container table">
         <!-- Se genera una tabla (la cual se entregara a index.php) -->
@@ -71,8 +70,9 @@ Qatar 2022
             <td>Pts</td>
         </tr>
         {% for team in tableB %}
-        <tr>
-            <td>{{ pos }}</td>
+        
+        <tr>                          
+            <td>{{ loop.index }}</td>
             <td>{{ team[0] }}</td>
             <td>{{ team[1] }}</td>
             <td>{{ team[2] }}</td>
@@ -81,18 +81,15 @@ Qatar 2022
             <td>{{ team[5] }}</td>
             <td>{{ team[6] }}</td>
             <td>{{ team[7] }}</td>  
-            <td>{{ team[8] }}</td>
-                    
-        </tr>
-        {% set pos = pos + 1 %}
+            <td>{{ team[8] }}</td>                    
+        </tr>           
         {% endfor %} 
         <tbody id="testing">
         </tbody>
     </table>
     {% endif %}
 
-    {% if tableC != () %}
-    {% set pos = 1 %}
+    {% if tableC != () %}    
     <h2 class="subtitle">Grupo C</h2>
     <table class="container table">
         <!-- Se genera una tabla (la cual se entregara a index.php) -->
@@ -111,7 +108,7 @@ Qatar 2022
         </tr>
         {% for team in tableC %}
         <tr>
-            <td>{{ pos }}</td>
+            <td>{{ loop.index }}</td>
             <td>{{ team[0] }}</td>
             <td>{{ team[1] }}</td>
             <td>{{ team[2] }}</td>
@@ -122,16 +119,14 @@ Qatar 2022
             <td>{{ team[7] }}</td>  
             <td>{{ team[8] }}</td>
                     
-        </tr>
-        {% set pos = pos + 1 %}
+        </tr>        
         {% endfor %} 
         <tbody id="testing">
         </tbody>
     </table>
     {% endif %}
 
-    {% if tableD != () %}
-    {% set pos = 1 %}
+    {% if tableD != () %}    
     <h2 class="subtitle">Grupo D</h2>
     <table class="container table">
         <!-- Se genera una tabla (la cual se entregara a index.php) -->
@@ -150,7 +145,7 @@ Qatar 2022
         </tr>
         {% for team in tableD %}
         <tr>
-            <td>{{ pos }}</td>
+            <td>{{ loop.index }}</td>
             <td>{{ team[0] }}</td>
             <td>{{ team[1] }}</td>
             <td>{{ team[2] }}</td>
@@ -161,16 +156,14 @@ Qatar 2022
             <td>{{ team[7] }}</td>  
             <td>{{ team[8] }}</td>
                     
-        </tr>
-        {% set pos = pos + 1 %}
+        </tr>        
         {% endfor %} 
         <tbody id="testing">
         </tbody>
     </table>
     {% endif %}
 
-    {% if tableE != () %}
-    {% set pos = 1 %}
+    {% if tableE != () %}    
     <h2 class="subtitle">Grupo E</h2>
     <table class="container table">
         <!-- Se genera una tabla (la cual se entregara a index.php) -->
@@ -189,7 +182,7 @@ Qatar 2022
         </tr>
         {% for team in tableE %}
         <tr>
-            <td>{{ pos }}</td>
+            <td>{{ loop.index }}</td>
             <td>{{ team[0] }}</td>
             <td>{{ team[1] }}</td>
             <td>{{ team[2] }}</td>
@@ -200,16 +193,14 @@ Qatar 2022
             <td>{{ team[7] }}</td>  
             <td>{{ team[8] }}</td>
                     
-        </tr>
-        {% set pos = pos + 1 %}
+        </tr>        
         {% endfor %} 
         <tbody id="testing">
         </tbody>
     </table>
     {% endif %}
 
-    {% if tableF != () %}
-    {% set pos = 1 %}
+    {% if tableF != () %}    
     <h2 class="subtitle">Grupo F</h2>
     <table class="container table">
         <!-- Se genera una tabla (la cual se entregara a index.php) -->
@@ -228,7 +219,7 @@ Qatar 2022
         </tr>
         {% for team in tableF %}
         <tr>
-            <td>{{ pos }}</td>
+            <td>{{ loop.index }}</td>
             <td>{{ team[0] }}</td>
             <td>{{ team[1] }}</td>
             <td>{{ team[2] }}</td>
@@ -238,16 +229,14 @@ Qatar 2022
             <td>{{ team[6] }}</td>
             <td>{{ team[7] }}</td>  
             <td>{{ team[8] }}</td>
-        </tr>
-        {% set pos = pos + 1 %}
+        </tr>        
         {% endfor %} 
         <tbody id="testing">
         </tbody>
     </table>
     {% endif %}
 
-    {% if tableG != () %}
-    {% set pos = 1 %}
+    {% if tableG != () %}    
     <h2 class="subtitle">Grupo G</h2>
     <table class="container table">
         <!-- Se genera una tabla (la cual se entregara a index.php) -->
@@ -266,7 +255,7 @@ Qatar 2022
         </tr>
         {% for team in tableG %}
         <tr>
-            <td>{{ pos }}</td>
+            <td>{{ loop.index }}</td>
             <td>{{ team[0] }}</td>
             <td>{{ team[1] }}</td>
             <td>{{ team[2] }}</td>
@@ -276,16 +265,14 @@ Qatar 2022
             <td>{{ team[6] }}</td>
             <td>{{ team[7] }}</td>  
             <td>{{ team[8] }}</td>
-        </tr>
-        {% set pos = pos + 1 %}
+        </tr>        
         {% endfor %} 
         <tbody id="testing">
         </tbody>
     </table>
     {% endif %}
 
-    {% if tableH != () %}
-    {% set pos = 1 %}
+    {% if tableH != () %}    
     <h2 class="subtitle">Grupo H</h2>
     <table class="container table">
         <!-- Se genera una tabla (la cual se entregara a index.php) -->
@@ -304,7 +291,7 @@ Qatar 2022
         </tr>
         {% for team in tableH %}
         <tr>
-            <td>{{ pos }}</td>
+            <td>{{ loop.index }}</td>
             <td>{{ team[0] }}</td>
             <td>{{ team[1] }}</td>
             <td>{{ team[2] }}</td>
@@ -314,8 +301,7 @@ Qatar 2022
             <td>{{ team[6] }}</td>
             <td>{{ team[7] }}</td>  
             <td>{{ team[8] }}</td>
-        </tr>
-        {% set pos = pos + 1 %}
+        </tr>        
         {% endfor %} 
         <tbody id="testing">
         </tbody>

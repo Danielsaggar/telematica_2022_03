@@ -23,6 +23,7 @@ from models.ModelComentarios import ModelComentarios
 from models.ModelTeams import ModelTeams
 from models.ModelGroups import ModelGroups
 from models.ModelPlayer import ModelPlayer
+from models.ModelGame import ModelGame
 
 #entities
 from models.entities.User import Users
@@ -33,9 +34,10 @@ from models.entities.User import Users
 app = Flask(__name__)
 Login_Manager_app=LoginManager(app)
 db=MySQL(app)
-global Type, comentario 
+global Type, comentario, Online 
 Type=0
 comentario =0
+Online=0
 
 @Login_Manager_app.user_loader
 def load_user(id):
@@ -61,24 +63,23 @@ def home():
 
 @app.route("/Results", methods=["GET", "POST"])
 def results():        
-    global Type
-    data=ModelTable.positions(db)    
-    return render_template("Results.html", table=data, Type=Type)
+    global Type       
+    return render_template("Results.html", Type=Type)
 
 @app.route("/Register", methods=["GET", "POST"])
 def register():    
-    frm = Register()
-    data=ModelTable.positions(db)        
+    frm = Register()           
     if request.method=="POST":    
         user= Users(frm.cellphone.data, frm.username.data, frm.password.data, 0) 
         ModelArbitrator.create(db,user)  
         return redirect ("/logout")
     else:
-        return render_template("register.html", frm=frm, table=data, Type=Type) 
+        return render_template("register.html", frm=frm, Type=Type) 
 
 @app.route("/live")
 def live():
-    global Type        
+    global Type,comentario, Online    
+    Online=ModelGame.Online(db)    
     return render_template("live.html", Type=Type) 
        
 @app.route("/Login", methods=["GET", "POST"])
@@ -182,26 +183,29 @@ def edit():
         print(escudo)
         
         if request.method=="POST":                                                             
-            if 'crear_arbitro' in request.form: 
+            if 'editar_arbitro' in request.form: 
+                id=frm_arbitro.Id.data     
                 name=frm_arbitro.name.data
                 country=frm_arbitro.country.data                
-                ModelArbitrator.create(db,name,country) 
-                return redirect ("/Config")    
+                ModelArbitrator.edit(db,id,name,country) 
+                return redirect ("/Edit")    
             if 'delete_arbitro' in request.form: 
                 id=frm_arbitro.Id.data                           
                 ModelArbitrator.delete(db,id) 
-                return redirect ("/Config")    
-            if 'crear_estadio' in request.form: 
+                return redirect ("/Edit")     
+            if 'editar_estadio' in request.form: 
+                id=frm_estadio.Id.data   
                 name=frm_estadio.name.data
                 country=frm_estadio.country.data                
                 capacidad=frm_estadio.capacidad.data  
-                ModelStadium.create(db,name,country,capacidad) 
-                return redirect ("/Config")    
+                ModelStadium.edit(db,id,name,country,capacidad) 
+                return redirect ("/Edit")      
             if 'delete_estadio' in request.form: 
                 id=frm_estadio.Id.data                           
                 ModelStadium.delete(db,id) 
-                return redirect ("/Config")    
-            if 'crear_equipo' in request.form: 
+                return redirect ("/Edit")       
+            if 'editar_equipo' in request.form: 
+                id=request.form["EqEdit"] 
                 file = request.files['uploadFile'] 
                 basepath= os.path.dirname (__file__)                                                                    
                 newname="Temp"+".jpg"
@@ -212,20 +216,28 @@ def edit():
                     Entrenador=frm_equipos.namen.data
                     Equipo=frm_equipos.nameeq.data
                     Id_Grupo=frm_equipos.numeq.data                    
-                    ModelTeams.create(db,Id_Grupo, Equipo, upload, Grupo, Entrenador)                     
-                    ModelGroups.create(db,Equipo,Grupo) 
-                    return redirect ("/Config")     
-            if 'crear_jugador' in request.form: 
+                    ModelTeams.edit(db,id,Equipo,upload,Id_Grupo, Grupo,Entrenador)                     
+                    ModelGroups.edit(db,id,Grupo,Equipo)             
+                    return redirect ("/Edit")     
+            if 'delete_equipo' in request.form: 
+                id=request.form["EqDelete"]                              
+                ModelTeams.delete(db,id) 
+                return redirect ("/Edit") 
+            if 'editar_jugador' in request.form: 
+                id=frm_jugador.Id.data
                 name=frm_jugador.namejug.data
                 num=frm_jugador.numjug.data
                 apellido=frm_jugador.apejug.data
                 country=request.form["Nation"]                                
-                ModelPlayer.create(db,name,apellido,country,num) 
-                return redirect ("/Config")    
+                ModelPlayer.edit(db,id,name,apellido,country,num) 
+                return redirect ("/Edit")    
+            if 'delete_jugador' in request.form: 
+                id=frm_jugador.Id.data                          
+                ModelPlayer.delete(db,id)
         return render_template("/admin/Edit.html", 
             Arbitrator=arbitrator,Stadium=stadium, frm_arbitro=frm_arbitro, 
             frm_estadio=frm_estadio,frm_equipos=frm_equipos, frm_jugador=frm_jugador,
-            Type=Type, Nation=Nation, Players=Players, Teams=Teams, escudo=escudo, len = len(Teams))
+            Type=Type, Nation=Nation, Players=Players, Teams=Teams, escudo=escudo)
     else:
         return redirect ("/")
    
@@ -240,7 +252,7 @@ def progamming():
 @app.route("/Comment", methods=["GET", "POST"])
 @login_required
 def comment():  
-    global comentario, Type
+    global comentario, Type, Online
     if Type==2:       
         now=datetime.now()
         frm=commentator()
@@ -250,8 +262,23 @@ def comment():
         if request.method=="POST":   
             if 'create' in request.form: 
                 comentario=comentario+1
-                comment=frm.comment.data                             
+                comment=frm.comment.data
+                AmarillaL=frm.AmarillaL.data
+                AmarillaV=frm.Amarillav.data
+                RojaL=frm.RojaL.data
+                RojaV=frm.RojaV.data
+                GolesL=frm.GolesL.data
+                GolesV=frm.GolesV.data
+                EsquinaL=frm.EsquinaL.data
+                EsquinaV=frm.EsquinaV.data
+                ArcoL=frm.ArcoL.data
+                ArcoV=frm.ArcoV.data
+                OffsideL=frm.OffsideL.data
+                OffsideV=frm.OffsideV.data     
+                Online=ModelGame.Online(db)                         
                 ModelComentarios.new(db,comentario,comment)   
+                ModelComentarios.update(db,Online, AmarillaL, AmarillaV,RojaL, RojaV,GolesL, GolesV, 
+                EsquinaL, EsquinaV, ArcoL, ArcoV, OffsideL, OffsideV)  
                 print("Holi")              
             if 'delete' in request.form: 
                 comentario=0                                        
@@ -262,6 +289,7 @@ def comment():
 
 @app.route("/data", methods=["GET"])
 def data():        
+    global Online
     data=ModelComentarios.last(db)            
     y = json.dumps(data)      
     return (y)

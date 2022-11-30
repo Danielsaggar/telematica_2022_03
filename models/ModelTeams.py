@@ -22,7 +22,31 @@ class ModelTeams():
             print("Funciona")     
         except Exception as ex:
             raise Exception(ex)
-        
+
+    @classmethod
+    def delete(self,db,id):
+        try:
+            id=str(id)
+            cursor=db.connection.cursor()                        
+            cursor.execute("DELETE FROM equipos WHERE Equipo = '"+id+"'")
+            db.connection.commit()
+            print("Funciona")    
+        except Exception as ex:
+            raise Exception(ex)
+
+    @classmethod
+    def edit(self,db,id,Equipo, Escudo, Id_Grupo, Grupo, Entrenador):
+        try:
+            id=str(id)  
+            Binpic=convertbinary(Escudo)          
+            cursor=db.connection.cursor()                 
+            cursor.execute("UPDATE equipos SET Equipo=%s, Escudo=%s, Id_Grupo=%s, Grupo=%s, Entrenador=%s WHERE Equipo = '"+id+"'",
+            (Equipo, Binpic, Id_Grupo, Grupo, Entrenador))
+            db.connection.commit()
+            print("Funciona")    
+        except Exception as ex:
+            raise Exception(ex)
+
     @classmethod
     def escudo(self,db,Id_Grupo, Equipo, Escudo, Grupo, Entrenador):
         try:
