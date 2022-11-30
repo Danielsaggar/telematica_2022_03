@@ -58,7 +58,7 @@ class ModelTable():
     def positionF(self,db):
         try:
             cursor=db.connection.cursor()
-            sql="SELECT * FROM grupo_F ORDER BY Pts desc"
+            sql="SELECT * FROM grupo_f ORDER BY Pts desc"
             cursor.execute(sql)
             rows = cursor.fetchall()    
             return (rows)            
@@ -69,7 +69,7 @@ class ModelTable():
     def positionG(self,db):
         try:
             cursor=db.connection.cursor()
-            sql="SELECT * FROM grupo_G ORDER BY Pts desc"
+            sql="SELECT * FROM grupo_g ORDER BY Pts desc"
             cursor.execute(sql)
             rows = cursor.fetchall()    
             return (rows)            
@@ -80,7 +80,7 @@ class ModelTable():
     def positionH(self,db):
         try:
             cursor=db.connection.cursor()
-            sql="SELECT * FROM grupo_H ORDER BY Pts desc"
+            sql="SELECT * FROM grupo_h ORDER BY Pts desc"
             cursor.execute(sql)
             rows = cursor.fetchall()    
             return (rows)            
@@ -107,5 +107,5 @@ class ModelTable():
             rows = cursor.fetchall()    
             return (rows)            
         except Exception as ex:
-            raise Exception(ex)
+            raise Exception(ex)    
         
