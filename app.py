@@ -46,7 +46,7 @@ def load_user(id):
 
 @app.route("/", methods=["GET", "POST"])
 def home():    
-    global Type
+    global Type    
     TablaA=ModelTable.positionA(db)           
     TablaB=ModelTable.positionB(db)            
     TablaC=ModelTable.positionC(db)            
