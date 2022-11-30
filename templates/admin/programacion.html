@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+{% block title %}
+Programacion
+{% endblock %}
+
+{% block content %}
+<link rel ="stylesheet" href="{{ url_for('static',filename='css/prog.css') }}">
+<main>     
+    
+    <h2 class="subtitle">Modulo de Programacion</h2>
+    <!-- select para el grupo -->
+
+<section  class="rectangle">
+    <div class="form-group">
+        <label for="Grupo" class="text">Grupo</label>
+
+        <select class="custom-select form-control" id="Grupo" name="Grupo">
+            {%for Grupo in Group%}
+            <option value="{{Grupo[0]}}">{{Grupo[0]}}</option>
+            {%endfor%}
+            <!-- cargar con js Grupo -->
+        </select>
+    </div>
+
+    <br>
+    <br>
+
+    <!-- select para el Local -->
+    <div class="form-group">
+        <label for="Local" class="text">Local</label>
+
+        <select class="custom-select form-control" id="Local" name="Local">
+            {%for Local in Locals%}
+            <option value="{{Local[0]}}">{{Local[0]}}</option>
+            {%endfor%}
+            <!-- cargar con js dependiendo del grupo -->
+        </select>
+    </div>
+
+    <br>
+    <br>
+    <!-- select para el Visitante -->
+    <div class="form-group">
+        <label for="Visitante" class="text">Visitante</label>
+        <select class="custom-select form-control" id="Visitante" name="Visitante">
+            {%for Visitantes in Visitors%}
+            <option value="{{Visitantes[0]}}">{{Visitantes[0]}}</option>
+            {%endfor%}
+            <!-- cargar con js dependiendo del Local -->
+        </select>
+    </div>
+
+    <br>
+    <br>
+    <!-- select para el arbitro -->
+    <div class="form-group">
+        <label for="Arbitro" class="text">Arbitro</label>
+        <select class="custom-select form-control" id="Arbitro" name="Visitante">
+            {%for Arbitro in Arbitrator%}
+            <option value="{{Arbitro[0]}}">{{Arbitro[0]}}</option>
+            {%endfor%}
+            <!-- cargar con js dependiendo de los equipos -->
+        </select>
+    </div>
+
+    <br>
+    <br>
+    <!-- select para el estadio -->
+    <div class="form-group">
+        <label for="Estadio" class="text">Estadio</label>
+        <select class="custom-select form-control" id="Estadio" name="Estadio">
+            {%for estadio in Stadium%}
+            <option value="{{estadio[0]}}">{{estadio[0]}}</option>
+            {%endfor%}
+            <!-- cargar con js Estadio -->
+        </select>
+    </div>
+
+    <br>
+    <br>
+
+    <div class="datefinish">
+        <h5 class="text">Seleccione fecha Partido</h5>
+        <input type="date" id="Fecha" min='2022-11-01'>
+        <br>
+        <h5 class="text">Seleccione hora Partido</h5>
+        <input type="time" id="Hora">
+    </div>
+
+    <br>
+    <br> 
+    <button id="intro" class="button3">Registrar</button>
+    <br>
+    <br>
+<br>
+</section>
+</main>
+<script src="../Telematica/Controlador/select.js"></script>
+
+
+
+{% endblock %}

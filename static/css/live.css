@@ -1,0 +1,63 @@
+body {
+
+    background-image: url(/static/resources/fond.jpeg);
+    background-size: cover;
+}
+.subtitle{
+    text-align: center;
+    font-size: 50px;
+    color: antiquewhite;
+    text-shadow:  7px 13px 37px  rgb(141, 58, 58);
+   
+
+
+}
+.sub{
+    text-align: center;
+    font-size: 20px;
+    color: antiquewhite;
+    
+}
+.envivo{
+    width: 400px;
+    height: 500px;
+    background: #cf6264;
+    margin: auto;
+    margin-top: 50px;
+    box-shadow: 7px 13px 37px #000;
+    padding: 20px 30px;
+    border-top: #017bab;
+    color: floralwhite;
+    font-family: Calibri;
+
+
+
+}
+.estadisticas1{
+    width: 400px;
+    height: 90px;
+    background: #cf6264;
+    margin: auto;
+    margin-top: 50px;
+    box-shadow: 7px 13px 37px #000;
+    padding: 20px 30px;
+    border-top: #017bab;
+    color: floralwhite;
+    font-family: Calibri;
+    
+    position: relative;
+}
+.estadisticas2{
+    width: 400px;
+    height: 90px;
+    background: #cf6264;
+    margin: auto;
+    margin-top: 50px;
+    box-shadow: 7px 13px 37px #000;
+    padding: 20px 30px;
+    border-top: #017bab;
+    color: floralwhite;
+    font-family: Calibri;
+    
+    position: relative;
+}

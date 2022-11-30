@@ -5,6 +5,7 @@ Configuraciones
 {% endblock %}
 
 {% block content %}
+<link rel="stylesheet" href="/static/css/conf.css">
 <main>
     <section class="Admin container"></section>
     <h2 class="subtitle">Modulo de configuracion</h2>
@@ -19,10 +20,11 @@ Configuraciones
                     </span>
                 </h3>
 
-                <div class="Admin__show">                                       
+                <div class="Admin__show">      
+                    <div class="Admin__eqp">                                  
                     <p class="Admin__paragraph">Ingrese los datos del nuevo arbitro</p>
 
-                    <div class="Admin__formulario">
+                    
                         <form action="" method="post">
                             {{ frm_arbitro.name.label }}
                             {{ frm_arbitro.name }}
@@ -47,10 +49,11 @@ Configuraciones
                     </span>
                 </h3>
 
-                <div class="Admin__show">                    
+                <div class="Admin__show"> 
+                    <div class="Admin__eqp">                    
                     <p class="Admin__paragraph">Ingresar datos del nuevo estadio</p>
 
-                    <div class="Admin__formulario">
+                     
                         <form action="" method="post">
                             {{ frm_estadio.name.label }}
                             {{ frm_estadio.name }}
@@ -80,14 +83,15 @@ Configuraciones
 
                 <div class="Admin__show">
                     <script src="../../static/js/equipo.js"></script>                                               
-                        <div class="Admin__eqp">                            
-                                <h2>Arrastra y suelta el logo del equipo</h2>
-                                <span></span>
-                                <form action="" method="post" enctype="multipart/form-data">      
-                                <div class="drag-area">
+                               <div class="drag-area">                 
+                                 <h2>Arrastra y suelta el logo del equipo</h2>
+                                 <span></span>
+                                 <form action="" method="post" enctype="multipart/form-data">      
+                                
                                     <img id="imagenPrevisualizacion">
                                     <input type="file" id="uploadFile" name="uploadFile" accept="image/*">
-                                </div>                                                                                                      
+                                </div>       
+                                <div class="Admin__eqp">                                                                                                
                                     {{ frm_equipos.group.label }}
                                     {{ frm_equipos.group }}<br><br>
 
@@ -147,15 +151,19 @@ Configuraciones
                 
             </div>
         </article>    
-    
-    
+        <article class="edit">
+            <div class="Admin__answer">
+              <a href="{{ url_for('edit') }}">Modulo de edicion</a>
+           </div>
+         </article> 
     </section>   
-        
+
+     
    
 
 
 </main>
-<a href="{{ url_for('edit') }}">Modulo de edicion</a>
+
 <script src="../../static/js/Escudo.js"></script>
 <script src="../../static/js/slideArbitros.js"></script>
 {% endblock %}

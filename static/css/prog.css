@@ -1,0 +1,47 @@
+body {
+
+    background-image: url(/static/resources/fondprog.jpg);
+    background-size:cover;
+}
+
+.rectangle{
+
+    width: 400px;
+    height: 600px;
+    background: #cf6264;
+    margin: auto;
+    margin-top: 50px;
+    box-shadow: 7px 13px 37px #000;
+    padding: 20px 30px;
+    border-top: #017bab;
+    color: floralwhite;
+    font-family: Calibri;
+}
+.from-group{
+ text-align: center;
+ font-size: 55px;
+ 
+
+
+}
+.subtitle {
+    text-align: center;
+    font-size: 50px;
+    color: antiquewhite;
+    text-shadow:  7px 13px 37px  rgb(141, 58, 58);
+   
+}
+.text{
+
+    font-size: 20px;
+color: antiquewhite;
+}
+.button3{
+    color: antiquewhite;
+    background-color: rgb(243, 39, 39); 
+    width: 160px;
+    height: 30px;
+    box-shadow: 7px 13px 37px #000;
+    border-radius: 8px;
+
+}

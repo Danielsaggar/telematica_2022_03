@@ -5,10 +5,71 @@ Transmisión
 {% endblock %}
 
 {% block content %}
+<link rel ="stylesheet" href="{{ url_for('static',filename='css/live.css') }}">
 <main>
+   
+   <h2 class="subtitle">Minuto a minuto</h2>
+ <section class="envivo">
+   
+ 
     <a href="#" id="Activate" class="nav__links">Esperando</a>
+ 
+
+ <script src="..//static/js/slider.js"></script>
+ <script src="../static/js/prueba.js"></script>
+ 
+ </section>
+<section class="estadisticas1">
+ <table class="estadisticas">
+   <h3 class="sub">Locales</h3>
+   <tr>
+      <!-- Info de las columnas -->
+      <td>AmarillaL</td>
+      <td>RojaL</td>
+      <td>GolesL</td>
+      <td>EsquinaL</td>
+      <td>ArcoL</td>
+      <td>OffsiteL</td>
+      <tr>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>   
+         <td></td>      
+
+     </tr>
+
+  </tr>
+
+ </table>
+</section>
+
+<section class="estadisticas2">
+ <table class="estadisticas">
+   <h3 class="sub">Visitantes</h3>
+   <tr>
+      <!-- Info de las columnas -->
+      <td>AmarillaV</td>
+      <td>RojaV</td>
+      <td>GolesV</td>
+      <td>EsquinaV</td>
+      <td>ArcoV</td>
+      <td>OffsiteV</td>
+
+  </tr>
+  <tr>
+   <td></td>
+   <td></td>
+   <td></td>
+   <td></td>   
+   <td></td>      
+
+</tr>
+
+
+ </table>
+</section>
 </main>
 
-<script src="..//static/js/slider.js"></script>
-<script src="../static/js/prueba.js"></script>
+
 {% endblock %}

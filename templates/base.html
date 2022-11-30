@@ -7,7 +7,7 @@
     <title> {% block title %} {% endblock %}</title>
     <link rel="shortcut icon" href="/static/resources/Balon.webp" type="image/x-icon">
     <link rel="stylesheet" href="/static/css/estilos.css">
-    <link rel="stylesheet" href="/static/css/conf.css">    
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -34,12 +34,12 @@
             <li class="nav__item">
                 <a href="{{ url_for('register') }}" class="nav__links">Registrarse</a>
             </li>
-        
+     
             {% if Type == 3 %}
             <ul class="nav">
                 <li><a href="#" class="nav__item">Ajustes</a>
                     <ul>
-                    <li><a href="#"  class="ajustes">Programacion</a></li>
+                    <li><a href="{{ url_for('progamming') }}"  class="ajustes">Programacion</a></li>
                     <li><a href="{{ url_for('conf') }}" class="ajustes">Configuraciones</a></li>
                     </ul>
                 </li>
